@@ -139,4 +139,6 @@ if __name__ == '__main__':
     f = '__main__'
     sh.com.start()
     RenamePhotos(True).run()
+    mes = _('Goodbye!')
+    sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DownsizeSmartphone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 15:56+0300\n"
-"PO-Revision-Date: 2020-10-03 16:00+0300\n"
+"POT-Creation-Date: 2020-10-03 16:07+0300\n"
+"PO-Revision-Date: 2020-10-03 16:07+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -43,6 +43,10 @@ msgstr "Файлов для обработки: {}/{}"
 #: base/bin/DownsizeSmartphone/src/controller.py:123
 msgid "Empty output is not allowed!"
 msgstr "Пустые выходные данные не допускаются!"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:142
+msgid "Goodbye!"
+msgstr "До свидания!"
 
 #: bin/skl_shared/src/gui.py:1260 bin/skl_shared/src/logic.py:404
 #: bin/skl_shared/src/logic.py:449 bin/skl_shared/src/logic.py:972
