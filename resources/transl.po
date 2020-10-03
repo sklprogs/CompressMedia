@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DownsizeSmartphone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-03 15:56+0300\n"
-"PO-Revision-Date: 2020-10-03 15:57+0300\n"
+"PO-Revision-Date: 2020-10-03 16:00+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -37,7 +37,7 @@ msgstr "Неподдерживаемые файлы:"
 
 #: base/bin/DownsizeSmartphone/src/controller.py:106
 msgid "Files to be processed: {}/{}"
-msgstr "Файлы для обработки: {}/{}"
+msgstr "Файлов для обработки: {}/{}"
 
 #: base/bin/DownsizeSmartphone/src/controller.py:111
 #: base/bin/DownsizeSmartphone/src/controller.py:123
