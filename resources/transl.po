@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DownsizeSmartphone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 16:07+0300\n"
-"PO-Revision-Date: 2020-10-03 16:07+0300\n"
+"POT-Creation-Date: 2020-10-04 04:06+0300\n"
+"PO-Revision-Date: 2020-10-04 04:08+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -19,32 +19,73 @@ msgstr ""
 "X-Poedit-SearchPath-0: base/bin/DownsizeSmartphone/src\n"
 "X-Poedit-SearchPath-1: bin/skl_shared/src\n"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:26
+#: base/bin/DownsizeSmartphone/src/controller.py:38
+#: base/bin/DownsizeSmartphone/src/controller.py:110
+msgid "Process \"{}\" ({}/{})"
+msgstr "Обработка \"{}\" ({}/{})"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:47
+msgid "All videos have been processed successfuly"
+msgstr "Все видео были обработаны успешно"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:50
+#| msgid "Files to be processed: {}/{}"
+msgid "Videos processed successfuly: {}/{}"
+msgstr "Видео, обработанных успешно: {}/{}"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:66
+#| msgid "Path: \"{}\"; free space: {}"
+msgid "Freed space: {}"
+msgstr "Освободилось: {}"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:73
 msgid "Renamed files:"
 msgstr "Переименованные файлы:"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:55
-msgid "Files:"
-msgstr "Файлы:"
+#: base/bin/DownsizeSmartphone/src/controller.py:96
+#: bin/skl_shared/src/logic.py:2947 bin/skl_shared/src/logic.py:3051
+#: bin/skl_shared/src/shared.py:2343
+msgid ""
+"Third-party module has failed!\n"
+"\n"
+"Details: {}"
+msgstr ""
+"Ошибка модуля третьей стороны!\n"
+"\n"
+"Детали: {}"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:61
-msgid "Folders (without duplicates):"
-msgstr "Каталоги (без дубликатов):"
+#: base/bin/DownsizeSmartphone/src/controller.py:119
+msgid "All photos have been processed successfuly"
+msgstr "Все фото были обработаны успешно"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:65
-msgid "Non-compliant files:"
-msgstr "Неподдерживаемые файлы:"
+#: base/bin/DownsizeSmartphone/src/controller.py:122
+#| msgid "Files to be processed: {}/{}"
+msgid "Photos processed successfuly: {}/{}"
+msgstr "Фото, обработанных успешно: {}/{}"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:106
-msgid "Files to be processed: {}/{}"
-msgstr "Файлов для обработки: {}/{}"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:111
-#: base/bin/DownsizeSmartphone/src/controller.py:123
+#: base/bin/DownsizeSmartphone/src/controller.py:146
+#: base/bin/DownsizeSmartphone/src/controller.py:220
+#: base/bin/DownsizeSmartphone/src/controller.py:232
 msgid "Empty output is not allowed!"
 msgstr "Пустые выходные данные не допускаются!"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:142
+#: base/bin/DownsizeSmartphone/src/controller.py:164
+msgid "Files:"
+msgstr "Файлы:"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:170
+msgid "Folders (without duplicates):"
+msgstr "Каталоги (без дубликатов):"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:174
+msgid "Non-compliant files:"
+msgstr "Неподдерживаемые файлы:"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:215
+msgid "Files to be processed: {}/{}"
+msgstr "Файлов для обработки: {}/{}"
+
+#: base/bin/DownsizeSmartphone/src/controller.py:252
 msgid "Goodbye!"
 msgstr "До свидания!"
 
@@ -457,17 +498,6 @@ msgstr "Нельзя скопировать \"{}\" сам в себя!"
 #: bin/skl_shared/src/logic.py:2906
 msgid "Failed to copy \"{}\" to \"{}\"!"
 msgstr "Не удалось скопировать \"{}\" в \"{}\"!"
-
-#: bin/skl_shared/src/logic.py:2947 bin/skl_shared/src/logic.py:3051
-#: bin/skl_shared/src/shared.py:2343
-msgid ""
-"Third-party module has failed!\n"
-"\n"
-"Details: {}"
-msgstr ""
-"Ошибка модуля третьей стороны!\n"
-"\n"
-"Детали: {}"
 
 #: bin/skl_shared/src/logic.py:3016
 msgid "Keys loaded in total: {}"
