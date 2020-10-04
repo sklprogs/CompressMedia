@@ -12,6 +12,25 @@ QUALITY = 65
 #PATH = '/media/WD/MY_PHOTOS/Смартфон'
 PATH = '/home/pete/tmp/TestSmartphone'
 
+ICON = sh.objs.get_pdir().add ('..','resources'
+                              ,'DownsizeSmartphone.gif'
+                              )
+
+
+class Objects:
+    
+    def __init__(self):
+        self.progress = None
+    
+    def get_progress(self):
+        if self.progress is None:
+            self.progress = sh.ProgressBar (title = _('Conversion progress')
+                                           ,icon  = ICON
+                                           )
+            self.progress.add()
+        return self.progress
+
+
 
 class Downsize:
     
@@ -33,6 +52,7 @@ class Downsize:
                      ]
             tcount = len(videos)
             scount = 0
+            objs.get_progress().show()
             for i in range(len(self.renamed)):
                 if self.relfiles[i].startswith('VID'):
                     mes = _('Process "{}" ({}/{})')
@@ -41,8 +61,11 @@ class Downsize:
                                      ,tcount
                                      )
                     sh.objs.get_mes(f,mes,True).show_info()
+                    objs.progress.set_text(mes)
+                    objs.progress.update(scount,tcount)
                     if self._convert_video(self.renamed[i]):
                         scount += 1
+            objs.progress.close()
             if scount == tcount:
                 mes = _('All videos have been processed successfuly')
                 sh.objs.get_mes(f,mes,True).show_info()
@@ -105,6 +128,7 @@ class Downsize:
                      ]
             tcount = len(photos)
             scount = 0
+            objs.get_progress().show()
             for i in range(len(self.renamed)):
                 if self.relfiles[i].startswith('IMG'):
                     mes = _('Process "{}" ({}/{})')
@@ -113,8 +137,11 @@ class Downsize:
                                      ,tcount
                                      )
                     sh.objs.get_mes(f,mes,True).show_info()
+                    objs.progress.set_text(mes)
+                    objs.progress.update(scount,tcount)
                     if self._convert_photo(self.renamed[i]):
                         scount += 1
+            objs.progress.close()
             if scount == tcount:
                 mes = _('All photos have been processed successfuly')
                 sh.objs.get_mes(f,mes,True).show_info()
@@ -243,6 +270,9 @@ class Downsize:
         self.rename()
         self.convert()
         self.debug()
+
+
+objs = Objects()
 
 
 if __name__ == '__main__':
