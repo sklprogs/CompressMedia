@@ -3,50 +3,159 @@
 
 import os
 import re
+from PIL import Image
 
 import skl_shared.shared as sh
 from skl_shared.localize import _
 
+QUALITY = 65
+#PATH = '/media/WD/MY_PHOTOS/Смартфон'
+PATH = '/home/pete/tmp/TestSmartphone'
 
-class RenamePhotos:
+
+class Downsize:
     
     def __init__(self,Debug=False):
         self.Debug = Debug
         self.files = []
         self.folders = []
         self.nomatch = []
-        #self.path = '/media/WD/MY_PHOTOS/Смартфон'
-        self.path = '/tmp/TestSmartphone'
+        self.path = PATH
         self.relfiles = []
         self.renamed = []
         self.Success = True
+    
+    def convert_videos(self):
+        f = '[DownsizeSmartphone] controller.Downsize.convert_videos'
+        if self.Success:
+            videos = [file for file in self.relfiles \
+                      if file.startswith('VID')
+                     ]
+            tcount = len(videos)
+            scount = 0
+            for i in range(len(self.renamed)):
+                if self.relfiles[i].startswith('VID'):
+                    mes = _('Process "{}" ({}/{})')
+                    mes = mes.format (self.relfiles[i]
+                                     ,scount + 1
+                                     ,tcount
+                                     )
+                    sh.objs.get_mes(f,mes,True).show_info()
+                    if self._convert_video(self.renamed[i]):
+                        scount += 1
+            if scount == tcount:
+                mes = _('All videos have been processed successfuly')
+                sh.objs.get_mes(f,mes,True).show_info()
+            else:
+                mes = _('Videos processed successfuly: {}/{}')
+                mes = mes.format(scount,tcount)
+                sh.objs.get_mes(f,mes,True).show_warning()
+        else:
+            sh.com.cancel(f)
+    
+    def convert(self):
+        f = '[DownsizeSmartphone] controller.Downsize.convert'
+        if self.Success:
+            old_size = self.calculate_size()
+            self.convert_photos()
+            self.convert_videos()
+            new_size = self.calculate_size()
+            diff_size = sh.com.get_human_size (bsize     = old_size - new_size
+                                              ,LargeOnly = True
+                                              )
+            mes = _('Freed space: {}').format(diff_size)
+            sh.objs.get_mes(f,mes).show_info()
+        else:
+            sh.com.cancel(f)
     
     def _debug_renamed(self):
         mes = ['"{}"'.format(file) for file in self.renamed]
         return _('Renamed files:') + '\n' + '\n'.join(mes)
     
-    def rename(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.rename'
+    def calculate_size(self):
+        f = '[DownsizeSmartphone] controller.Downsize.calculate_size'
+        size = 0
         if self.Success:
-            pass
+            for file in self.renamed:
+                size += sh.File(file).get_size()
+        else:
+            sh.com.cancel(f)
+        return size
+    
+    def _convert_video(self,filew):
+        #TODO: implement
+        pass
+    
+    def _convert_photo(self,filew):
+        try:
+            iimage = Image.open(filew)
+            iimage.save(filew,optimize=True,quality=QUALITY)
+            iimage.close()
+            return True
+        except Exception as e:
+            mes = _('Third-party module has failed!\n\nDetails: {}')
+            mes = mes.format(e)
+            objs.get_mes(f,mes,True).show_error()
+    
+    def convert_photos(self):
+        f = '[DownsizeSmartphone] controller.Downsize.convert_photos'
+        if self.Success:
+            photos = [file for file in self.relfiles \
+                      if file.startswith('IMG')
+                     ]
+            tcount = len(photos)
+            scount = 0
+            for i in range(len(self.renamed)):
+                if self.relfiles[i].startswith('IMG'):
+                    mes = _('Process "{}" ({}/{})')
+                    mes = mes.format (self.relfiles[i]
+                                     ,scount + 1
+                                     ,tcount
+                                     )
+                    sh.objs.get_mes(f,mes,True).show_info()
+                    if self._convert_photo(self.renamed[i]):
+                        scount += 1
+            if scount == tcount:
+                mes = _('All photos have been processed successfuly')
+                sh.objs.get_mes(f,mes,True).show_info()
+            else:
+                mes = _('Photos processed successfuly: {}/{}')
+                mes = mes.format(scount,tcount)
+                sh.objs.get_mes(f,mes,True).show_warning()
+        else:
+            sh.com.cancel(f)
+    
+    def rename(self):
+        f = '[DownsizeSmartphone] controller.Downsize.rename'
+        if self.Success:
+            for i in range(len(self.renamed)):
+                if not sh.File(self.files[i],self.renamed[i]).move():
+                    self.Success = False
+                    break
         else:
             sh.com.cancel(f)
     
     def set_renamed(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.set_renamed'
+        f = '[DownsizeSmartphone] controller.Downsize.set_renamed'
         if self.Success:
             for i in range(len(self.relfiles)):
                 renamed = os.path.join(self.folders[i],self.relfiles[i])
                 self.renamed.append(renamed)
+                if not self.renamed:
+                    self.Success = False
+                    mes = _('Empty output is not allowed!')
+                    sh.objs.get_mes(f,mes,True).show_warning()
         else:
             sh.com.cancel(f)
     
     def create_folders(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.create_folders'
+        f = '[DownsizeSmartphone] controller.Downsize.create_folders'
         if self.Success:
             folders = sorted(set(self.folders))
             for folder in folders:
-                sh.Path(folder).create()
+                if not sh.Path(folder).create():
+                    self.Success = False
+                    break
         else:
             sh.com.cancel(f)
     
@@ -65,7 +174,7 @@ class RenamePhotos:
         return _('Non-compliant files:') + '\n' + '\n'.join(mes)
     
     def debug(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.debug'
+        f = '[DownsizeSmartphone] controller.Downsize.debug'
         if self.Debug:
             if self.Success:
                 mes = [self._debug_files(),self._debug_folders()
@@ -79,12 +188,12 @@ class RenamePhotos:
             sh.com.rep_lazy(f)
     
     def check(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.check'
+        f = '[DownsizeSmartphone] controller.Downsize.check'
         self.idir = sh.Directory(self.path)
         self.Success = self.idir.Success
     
     def set_folders(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.set_folders'
+        f = '[DownsizeSmartphone] controller.Downsize.set_folders'
         if self.Success:
             pattern = '(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_'
             all_count = len(self.files)
@@ -114,7 +223,7 @@ class RenamePhotos:
             sh.com.cancel(f)
     
     def get_files(self):
-        f = '[DownsizeSmartphone] controller.RenamePhotos.get_files'
+        f = '[DownsizeSmartphone] controller.Downsize.get_files'
         if self.Success:
             self.files = self.idir.get_files()
             self.relfiles = self.idir.get_rel_files()
@@ -129,16 +238,17 @@ class RenamePhotos:
         self.check()
         self.get_files()
         self.set_folders()
-        #self.create_folders()
+        self.create_folders()
         self.set_renamed()
         self.rename()
+        self.convert()
         self.debug()
 
 
 if __name__ == '__main__':
     f = '__main__'
     sh.com.start()
-    RenamePhotos(True).run()
+    Downsize(False).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()
