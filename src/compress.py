@@ -33,7 +33,7 @@ class Objects:
 
 
 
-class Downsize:
+class Compress:
     
     def __init__(self,Debug=False):
         self.Debug = Debug
@@ -46,7 +46,7 @@ class Downsize:
         self.Success = True
     
     def convert_videos(self):
-        f = '[DownsizeSmartphone] controller.Downsize.convert_videos'
+        f = '[CompressMedia] compress.Compress.convert_videos'
         if self.Success:
             videos = [file for file in self.relfiles \
                       if file.startswith('VID')
@@ -78,7 +78,7 @@ class Downsize:
             sh.com.cancel(f)
     
     def convert(self):
-        f = '[DownsizeSmartphone] controller.Downsize.convert'
+        f = '[CompressMedia] compress.Compress.convert'
         if self.Success:
             old_size = self.calculate_size()
             self.convert_photos()
@@ -97,7 +97,7 @@ class Downsize:
         return _('Renamed files:') + '\n' + '\n'.join(mes)
     
     def calculate_size(self):
-        f = '[DownsizeSmartphone] controller.Downsize.calculate_size'
+        f = '[CompressMedia] compress.Compress.calculate_size'
         size = 0
         if self.Success:
             for file in self.renamed:
@@ -128,7 +128,7 @@ class Downsize:
             sh.objs.get_mes(f,mes,True).show_error()
     
     def convert_photos(self):
-        f = '[DownsizeSmartphone] controller.Downsize.convert_photos'
+        f = '[CompressMedia] compress.Compress.convert_photos'
         if self.Success:
             photos = [file for file in self.relfiles \
                       if file.startswith('IMG')
@@ -160,7 +160,7 @@ class Downsize:
             sh.com.cancel(f)
     
     def rename(self):
-        f = '[DownsizeSmartphone] controller.Downsize.rename'
+        f = '[CompressMedia] compress.Compress.rename'
         if self.Success:
             for i in range(len(self.renamed)):
                 if not sh.File(self.files[i],self.renamed[i]).move():
@@ -170,7 +170,7 @@ class Downsize:
             sh.com.cancel(f)
     
     def set_renamed(self):
-        f = '[DownsizeSmartphone] controller.Downsize.set_renamed'
+        f = '[CompressMedia] compress.Compress.set_renamed'
         if self.Success:
             for i in range(len(self.relfiles)):
                 renamed = os.path.join(self.folders[i],self.relfiles[i])
@@ -183,7 +183,7 @@ class Downsize:
             sh.com.cancel(f)
     
     def create_folders(self):
-        f = '[DownsizeSmartphone] controller.Downsize.create_folders'
+        f = '[CompressMedia] compress.Compress.create_folders'
         if self.Success:
             folders = sorted(set(self.folders))
             for folder in folders:
@@ -208,7 +208,7 @@ class Downsize:
         return _('Non-compliant files:') + '\n' + '\n'.join(mes)
     
     def debug(self):
-        f = '[DownsizeSmartphone] controller.Downsize.debug'
+        f = '[CompressMedia] compress.Compress.debug'
         if self.Debug:
             if self.Success:
                 mes = [self._debug_files(),self._debug_folders()
@@ -222,12 +222,12 @@ class Downsize:
             sh.com.rep_lazy(f)
     
     def check(self):
-        f = '[DownsizeSmartphone] controller.Downsize.check'
+        f = '[CompressMedia] compress.Compress.check'
         self.idir = sh.Directory(self.path)
         self.Success = self.idir.Success
     
     def set_folders(self):
-        f = '[DownsizeSmartphone] controller.Downsize.set_folders'
+        f = '[CompressMedia] compress.Compress.set_folders'
         if self.Success:
             pattern = '(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_'
             all_count = len(self.files)
@@ -257,7 +257,7 @@ class Downsize:
             sh.com.cancel(f)
     
     def get_files(self):
-        f = '[DownsizeSmartphone] controller.Downsize.get_files'
+        f = '[CompressMedia] compress.Compress.get_files'
         if self.Success:
             self.files = self.idir.get_files()
             self.relfiles = self.idir.get_rel_files()
@@ -285,7 +285,7 @@ objs = Objects()
 if __name__ == '__main__':
     f = '__main__'
     sh.com.start()
-    Downsize(False).run()
+    Compress(False).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()
