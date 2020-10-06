@@ -3,6 +3,7 @@
 
 import os
 import re
+import ffmpy
 from PIL import Image
 
 import skl_shared.shared as sh
@@ -106,8 +107,14 @@ class Downsize:
         return size
     
     def _convert_video(self,filew):
-        #TODO: implement
-        pass
+        try:
+            ffmpy.FFmpeg (inputs  = {file:None}
+                         ,outputs = {filew:None}
+                         ).run()
+        except Exception as e:
+            mes = _('Third-party module has failed!\n\nDetails: {}')
+            mes = mes.format(e)
+            sh.objs.get_mes(f,mes,True).show_error()
     
     def _convert_photo(self,filew):
         try:
@@ -118,7 +125,7 @@ class Downsize:
         except Exception as e:
             mes = _('Third-party module has failed!\n\nDetails: {}')
             mes = mes.format(e)
-            objs.get_mes(f,mes,True).show_error()
+            sh.objs.get_mes(f,mes,True).show_error()
     
     def convert_photos(self):
         f = '[DownsizeSmartphone] controller.Downsize.convert_photos'
