@@ -12,10 +12,10 @@ from skl_shared.localize import _
 QUALITY = 65
 #PATH = '/media/WD/MY_PHOTOS/Смартфон'
 PATH = '/home/pete/tmp/TestSmartphone'
+PATHW = '/home/pete/tmp/WriteSmartphone'
 
-ICON = sh.objs.get_pdir().add ('..','resources'
-                              ,'DownsizeSmartphone.gif'
-                              )
+
+ICON = sh.objs.get_pdir().add('..','resources','CompressMedia.gif')
 
 
 class Objects:
