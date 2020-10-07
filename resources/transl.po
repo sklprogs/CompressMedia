@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: CompressMedia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-07 03:49+0300\n"
-"PO-Revision-Date: 2020-10-07 03:55+0300\n"
+"PO-Revision-Date: 2020-10-07 04:00+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -35,17 +35,17 @@ msgstr "Пропущено файлов: {}"
 
 #: CompressMedia/src/compress.py:72
 msgid "Failed files: {}"
-msgstr "Файлы, обработанные с ошибкой: {}"
+msgstr "Файлов, обработанных с ошибкой: {}"
 
 #: CompressMedia/src/compress.py:84
 #| msgid "Freed space: {}"
 msgid "Processed data: {}"
-msgstr "Обработанные данные: {}"
+msgstr "Обработанных данных: {}"
 
 #: CompressMedia/src/compress.py:86
 #| msgid "Wrong input data: {}!"
 msgid "Converted data: {}"
-msgstr "Преобразованные данные: {}"
+msgstr "Преобразованных данных: {}"
 
 #: CompressMedia/src/compress.py:88
 msgid "Compression: {} ({}%)"
