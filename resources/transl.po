@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DownsizeSmartphone\n"
+"Project-Id-Version: CompressMedia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-04 05:02+0300\n"
-"PO-Revision-Date: 2020-10-04 05:02+0300\n"
+"POT-Creation-Date: 2020-10-07 03:49+0300\n"
+"PO-Revision-Date: 2020-10-07 03:55+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -15,38 +15,52 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../..\n"
-"X-Poedit-SearchPath-0: base/bin/DownsizeSmartphone/src\n"
-"X-Poedit-SearchPath-1: bin/skl_shared/src\n"
+"X-Poedit-Basepath: ../../../../bin\n"
+"X-Poedit-SearchPath-0: skl_shared/src\n"
+"X-Poedit-SearchPath-1: CompressMedia/src\n"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:27
+#: CompressMedia/src/compress.py:39
 msgid "Conversion progress"
 msgstr "Ход преобразования"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:58
-#: base/bin/DownsizeSmartphone/src/controller.py:134
+#: CompressMedia/src/compress.py:68
+#| msgid "Keys loaded in total: {}"
+msgid "Files in total: {}"
+msgstr "Всего файлов: {}"
+
+#: CompressMedia/src/compress.py:70
+#| msgid "Write file \"{}\""
+msgid "Skipped files: {}"
+msgstr "Пропущено файлов: {}"
+
+#: CompressMedia/src/compress.py:72
+msgid "Failed files: {}"
+msgstr "Файлы, обработанные с ошибкой: {}"
+
+#: CompressMedia/src/compress.py:84
+#| msgid "Freed space: {}"
+msgid "Processed data: {}"
+msgstr "Обработанные данные: {}"
+
+#: CompressMedia/src/compress.py:86
+#| msgid "Wrong input data: {}!"
+msgid "Converted data: {}"
+msgstr "Преобразованные данные: {}"
+
+#: CompressMedia/src/compress.py:88
+msgid "Compression: {} ({}%)"
+msgstr "Сжатие: {} ({}%)"
+
+#: CompressMedia/src/compress.py:91
+msgid "The operation has taken {}"
+msgstr "Операция завершена за {}"
+
+#: CompressMedia/src/compress.py:115
 msgid "Process \"{}\" ({}/{})"
 msgstr "Обработка \"{}\" ({}/{})"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:70
-msgid "All videos have been processed successfuly"
-msgstr "Все видео были обработаны успешно"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:73
-msgid "Videos processed successfuly: {}/{}"
-msgstr "Видео, обработанных успешно: {}/{}"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:89
-msgid "Freed space: {}"
-msgstr "Освобождено места: {}"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:96
-msgid "Renamed files:"
-msgstr "Переименованные файлы:"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:119
-#: bin/skl_shared/src/logic.py:2947 bin/skl_shared/src/logic.py:3051
-#: bin/skl_shared/src/shared.py:2343
+#: CompressMedia/src/compress.py:163 skl_shared/src/logic.py:2947
+#: skl_shared/src/logic.py:3051 skl_shared/src/shared.py:2343
 msgid ""
 "Third-party module has failed!\n"
 "\n"
@@ -56,87 +70,61 @@ msgstr ""
 "\n"
 "Детали: {}"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:146
-msgid "All photos have been processed successfuly"
-msgstr "Все фото были обработаны успешно"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:149
-msgid "Photos processed successfuly: {}/{}"
-msgstr "Фото, обработанных успешно: {}/{}"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:173
-#: base/bin/DownsizeSmartphone/src/controller.py:247
-#: base/bin/DownsizeSmartphone/src/controller.py:259
+#: CompressMedia/src/compress.py:239
 msgid "Empty output is not allowed!"
 msgstr "Пустые выходные данные не допускаются!"
 
-#: base/bin/DownsizeSmartphone/src/controller.py:191
-msgid "Files:"
-msgstr "Файлы:"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:197
-msgid "Folders (without duplicates):"
-msgstr "Каталоги (без дубликатов):"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:201
-msgid "Non-compliant files:"
-msgstr "Неподдерживаемые файлы:"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:242
-msgid "Files to be processed: {}/{}"
-msgstr "Файлов для обработки: {}/{}"
-
-#: base/bin/DownsizeSmartphone/src/controller.py:282
+#: CompressMedia/src/compress.py:286
 msgid "Goodbye!"
 msgstr "До свидания!"
 
-#: bin/skl_shared/src/gui.py:1260 bin/skl_shared/src/logic.py:404
-#: bin/skl_shared/src/logic.py:449 bin/skl_shared/src/logic.py:972
-#: bin/skl_shared/src/logic.py:5097 bin/skl_shared/src/shared.py:4239
+#: skl_shared/src/gui.py:1260 skl_shared/src/logic.py:404
+#: skl_shared/src/logic.py:449 skl_shared/src/logic.py:972
+#: skl_shared/src/logic.py:5097 skl_shared/src/shared.py:4239
 msgid "WARNING"
 msgstr "ПРЕДУПРЕЖДЕНИЕ"
 
-#: bin/skl_shared/src/gui.py:1267 bin/skl_shared/src/logic.py:443
-#: bin/skl_shared/src/logic.py:972 bin/skl_shared/src/shared.py:4231
+#: skl_shared/src/gui.py:1267 skl_shared/src/logic.py:443
+#: skl_shared/src/logic.py:972 skl_shared/src/shared.py:4231
 msgid "ERROR"
 msgstr "ОШИБКА"
 
-#: bin/skl_shared/src/gui.py:1274 bin/skl_shared/src/logic.py:406
-#: bin/skl_shared/src/logic.py:467 bin/skl_shared/src/shared.py:4264
-#: bin/skl_shared/src/shared.py:4468
+#: skl_shared/src/gui.py:1274 skl_shared/src/logic.py:406
+#: skl_shared/src/logic.py:467 skl_shared/src/shared.py:4264
+#: skl_shared/src/shared.py:4468
 msgid "QUESTION"
 msgstr "ВОПРОС"
 
-#: bin/skl_shared/src/gui.py:1281 bin/skl_shared/src/logic.py:402
-#: bin/skl_shared/src/logic.py:427 bin/skl_shared/src/logic.py:455
-#: bin/skl_shared/src/logic.py:950 bin/skl_shared/src/logic.py:994
-#: bin/skl_shared/src/logic.py:5105 bin/skl_shared/src/shared.py:4248
-#: bin/skl_shared/src/shared.py:4256
+#: skl_shared/src/gui.py:1281 skl_shared/src/logic.py:402
+#: skl_shared/src/logic.py:427 skl_shared/src/logic.py:455
+#: skl_shared/src/logic.py:950 skl_shared/src/logic.py:994
+#: skl_shared/src/logic.py:5105 skl_shared/src/shared.py:4248
+#: skl_shared/src/shared.py:4256
 msgid "INFO"
 msgstr "ИНФОРМАЦИЯ"
 
-#: bin/skl_shared/src/logic.py:95 bin/skl_shared/src/logic.py:176
+#: skl_shared/src/logic.py:95 skl_shared/src/logic.py:176
 msgid "Booleans"
 msgstr "Булевы переменные"
 
-#: bin/skl_shared/src/logic.py:95 bin/skl_shared/src/logic.py:182
+#: skl_shared/src/logic.py:95 skl_shared/src/logic.py:182
 msgid "Floatings"
 msgstr "Числа с учетом порядков"
 
-#: bin/skl_shared/src/logic.py:95 bin/skl_shared/src/logic.py:179
+#: skl_shared/src/logic.py:95 skl_shared/src/logic.py:179
 msgid "Integers"
 msgstr "Целые числа"
 
-#: bin/skl_shared/src/logic.py:96 bin/skl_shared/src/logic.py:160
-#: bin/skl_shared/src/logic.py:185
+#: skl_shared/src/logic.py:96 skl_shared/src/logic.py:160
+#: skl_shared/src/logic.py:185
 msgid "Strings"
 msgstr "Строки"
 
-#: bin/skl_shared/src/logic.py:107 bin/skl_shared/src/logic.py:121
-#: bin/skl_shared/src/logic.py:907 bin/skl_shared/src/logic.py:2389
-#: bin/skl_shared/src/shared.py:1429 bin/skl_shared/src/shared.py:2762
-#: bin/skl_shared/src/shared.py:2775 bin/skl_shared/src/shared.py:3304
-#: bin/skl_shared/src/shared.py:3691 bin/skl_shared/src/shared.py:3771
+#: skl_shared/src/logic.py:107 skl_shared/src/logic.py:121
+#: skl_shared/src/logic.py:907 skl_shared/src/logic.py:2389
+#: skl_shared/src/shared.py:1429 skl_shared/src/shared.py:2762
+#: skl_shared/src/shared.py:2775 skl_shared/src/shared.py:3304
+#: skl_shared/src/shared.py:3691 skl_shared/src/shared.py:3771
 msgid ""
 "An unknown mode \"{}\"!\n"
 "\n"
@@ -146,7 +134,7 @@ msgstr ""
 "\n"
 "Поддерживаются следующие режимы: \"{}\"."
 
-#: bin/skl_shared/src/logic.py:188
+#: skl_shared/src/logic.py:188
 msgid ""
 "# ATTENTION: This file is automatically generated. You can modify key values "
 "manually, but anything else will be overwritten."
@@ -154,74 +142,74 @@ msgstr ""
 "# ВНИМАНИЕ: Данный файл был создан автоматически. Можно вручную менять "
 "значения ключей, однако, все остальное будет перезаписано."
 
-#: bin/skl_shared/src/logic.py:245 bin/skl_shared/src/logic.py:4533
+#: skl_shared/src/logic.py:245 skl_shared/src/logic.py:4533
 msgid "Set the max number of rows to {}"
 msgstr "Задать максимальное число столбцов: {}"
 
-#: bin/skl_shared/src/logic.py:258
+#: skl_shared/src/logic.py:258
 msgid "Set the max column width to {} symbols"
 msgstr "Ограничить максимальную ширину столбца {} символами"
 
-#: bin/skl_shared/src/logic.py:285
+#: skl_shared/src/logic.py:285
 msgid "You need to install \"{}\"!"
 msgstr "Необходимо установить \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:308 bin/skl_shared/src/logic.py:1107
-#: bin/skl_shared/src/logic.py:1126 bin/skl_shared/src/logic.py:2532
-#: bin/skl_shared/src/logic.py:2552 bin/skl_shared/src/logic.py:4757
-#: bin/skl_shared/src/logic.py:4775 bin/skl_shared/src/logic.py:4819
-#: bin/skl_shared/src/shared.py:4538
+#: skl_shared/src/logic.py:308 skl_shared/src/logic.py:1107
+#: skl_shared/src/logic.py:1126 skl_shared/src/logic.py:2532
+#: skl_shared/src/logic.py:2552 skl_shared/src/logic.py:4757
+#: skl_shared/src/logic.py:4775 skl_shared/src/logic.py:4819
+#: skl_shared/src/shared.py:4538
 msgid "The condition \"{}\" is not observed!"
 msgstr "Условие \"{}\" не выполнено!"
 
-#: bin/skl_shared/src/logic.py:372
+#: skl_shared/src/logic.py:372
 msgid "Only iterable objects are supported!"
 msgstr "Поддерживаются только итерируемые объекты!"
 
-#: bin/skl_shared/src/logic.py:402 bin/skl_shared/src/logic.py:461
-#: bin/skl_shared/src/logic.py:976
+#: skl_shared/src/logic.py:402 skl_shared/src/logic.py:461
+#: skl_shared/src/logic.py:976
 msgid "DEBUG"
 msgstr "ОТЛАДКА"
 
-#: bin/skl_shared/src/logic.py:413
+#: skl_shared/src/logic.py:413
 msgid "File \"{}\" was not found!"
 msgstr "Файл \"{}\" не найден!"
 
-#: bin/skl_shared/src/logic.py:553 bin/skl_shared/src/logic.py:581
-#: bin/skl_shared/src/logic.py:2237 bin/skl_shared/src/logic.py:2707
-#: bin/skl_shared/src/logic.py:4037 bin/skl_shared/src/logic.py:5029
-#: bin/skl_shared/src/logic.py:5189 bin/skl_shared/src/logic.py:5223
-#: bin/skl_shared/src/logic.py:5308 bin/skl_shared/src/shared.py:2812
+#: skl_shared/src/logic.py:553 skl_shared/src/logic.py:581
+#: skl_shared/src/logic.py:2237 skl_shared/src/logic.py:2707
+#: skl_shared/src/logic.py:4037 skl_shared/src/logic.py:5029
+#: skl_shared/src/logic.py:5189 skl_shared/src/logic.py:5223
+#: skl_shared/src/logic.py:5308 skl_shared/src/shared.py:2812
 msgid "Wrong input data: \"{}\"!"
 msgstr "Недопустимые входные данные: \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:651 bin/skl_shared/src/logic.py:654
+#: skl_shared/src/logic.py:651 skl_shared/src/logic.py:654
 msgid "Left mouse button"
 msgstr "Левая кнопка мыши"
 
-#: bin/skl_shared/src/logic.py:657 bin/skl_shared/src/logic.py:660
+#: skl_shared/src/logic.py:657 skl_shared/src/logic.py:660
 msgid "Middle mouse button"
 msgstr "Средняя кнопка мыши"
 
-#: bin/skl_shared/src/logic.py:663 bin/skl_shared/src/logic.py:666
+#: skl_shared/src/logic.py:663 skl_shared/src/logic.py:666
 msgid "Right mouse button"
 msgstr "Правая кнопка мыши"
 
-#: bin/skl_shared/src/logic.py:669
+#: skl_shared/src/logic.py:669
 msgid "Space"
 msgstr "Пробел"
 
-#: bin/skl_shared/src/logic.py:808
+#: skl_shared/src/logic.py:808
 msgid "Custom arguments: \"{}\""
 msgstr "Дополнительные параметры: \"{}\""
 
-#: bin/skl_shared/src/logic.py:817 bin/skl_shared/src/logic.py:3460
-#: bin/skl_shared/src/logic.py:3488
+#: skl_shared/src/logic.py:817 skl_shared/src/logic.py:3460
+#: skl_shared/src/logic.py:3488
 msgid "Failed to run \"{}\"!"
 msgstr "Не удалось запустить \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:827 bin/skl_shared/src/logic.py:835
-#: bin/skl_shared/src/logic.py:843
+#: skl_shared/src/logic.py:827 skl_shared/src/logic.py:835
+#: skl_shared/src/logic.py:843
 msgid ""
 "Unable to open the file in an external program. You should probably check "
 "the file associations."
@@ -229,101 +217,101 @@ msgstr ""
 "Не удается открыть файл во внешней программе. Возможно, Вам стоит проверить "
 "ассоциации файлов."
 
-#: bin/skl_shared/src/logic.py:891 bin/skl_shared/src/logic.py:922
-#: bin/skl_shared/src/logic.py:937 bin/skl_shared/src/regexp.py:45
-#: bin/skl_shared/src/regexp.py:107
+#: skl_shared/src/logic.py:891 skl_shared/src/logic.py:922
+#: skl_shared/src/logic.py:937 skl_shared/src/regexp.py:45
+#: skl_shared/src/regexp.py:107
 msgid "Not enough input data!"
 msgstr "Недостаточно входных данных!"
 
-#: bin/skl_shared/src/logic.py:897 bin/skl_shared/src/logic.py:2374
+#: skl_shared/src/logic.py:897 skl_shared/src/logic.py:2374
 msgid "Write file \"{}\""
 msgstr "Запись файла \"{}\""
 
-#: bin/skl_shared/src/logic.py:904
+#: skl_shared/src/logic.py:904
 msgid "Unable to write file \"{}\"!"
 msgstr "Не удается записать файл \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:1025 bin/skl_shared/src/logic.py:2439
+#: skl_shared/src/logic.py:1025 skl_shared/src/logic.py:2439
 msgid "Entries deleted: {} ({}-{})"
 msgstr "Удалено вхождений: {} ({}-{})"
 
-#: bin/skl_shared/src/logic.py:1034 bin/skl_shared/src/logic.py:1175
-#: bin/skl_shared/src/logic.py:2448 bin/skl_shared/src/logic.py:2605
+#: skl_shared/src/logic.py:1034 skl_shared/src/logic.py:1175
+#: skl_shared/src/logic.py:2448 skl_shared/src/logic.py:2605
 msgid "File \"{}\" is not sortable!"
 msgstr "Файл \"{}\" не подлежит сортировке!"
 
-#: bin/skl_shared/src/logic.py:1049 bin/skl_shared/src/logic.py:1229
-#: bin/skl_shared/src/logic.py:1324 bin/skl_shared/src/logic.py:1998
-#: bin/skl_shared/src/logic.py:2463 bin/skl_shared/src/logic.py:3195
-#: bin/skl_shared/src/logic.py:3262 bin/skl_shared/src/logic.py:4105
-#: bin/skl_shared/src/logic.py:4879 bin/skl_shared/src/shared.py:687
-#: bin/skl_shared/src/shared.py:2538 bin/skl_shared/src/shared.py:3236
-#: bin/skl_shared/src/shared.py:3684 bin/skl_shared/src/shared.py:4586
+#: skl_shared/src/logic.py:1049 skl_shared/src/logic.py:1229
+#: skl_shared/src/logic.py:1324 skl_shared/src/logic.py:1998
+#: skl_shared/src/logic.py:2463 skl_shared/src/logic.py:3195
+#: skl_shared/src/logic.py:3262 skl_shared/src/logic.py:4105
+#: skl_shared/src/logic.py:4879 skl_shared/src/shared.py:687
+#: skl_shared/src/shared.py:2538 skl_shared/src/shared.py:3236
+#: skl_shared/src/shared.py:3684 skl_shared/src/shared.py:4586
 msgid "Wrong input data!"
 msgstr "Недопустимые входные данные!"
 
-#: bin/skl_shared/src/logic.py:1072
+#: skl_shared/src/logic.py:1072
 msgid "Dictionary \"{}\": Incorrect line #{}: \"{}\"!"
 msgstr "Словарь \"{}\": Неправильная строка №{}: \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:1221 bin/skl_shared/src/logic.py:2060
-#: bin/skl_shared/src/logic.py:5323
+#: skl_shared/src/logic.py:1221 skl_shared/src/logic.py:2060
+#: skl_shared/src/logic.py:5323
 msgid "Empty input is not allowed!"
 msgstr "Пустые входные данные не допускаются!"
 
-#: bin/skl_shared/src/logic.py:1225 bin/skl_shared/src/logic.py:2064
-#: bin/skl_shared/src/shared.py:3402 bin/skl_shared/src/shared.py:4146
+#: skl_shared/src/logic.py:1225 skl_shared/src/logic.py:2064
+#: skl_shared/src/shared.py:3402 skl_shared/src/shared.py:4146
 msgid "File \"{}\" has not been found!"
 msgstr "Файл \"{}\" не найден!"
 
-#: bin/skl_shared/src/logic.py:1278 bin/skl_shared/src/logic.py:2649
+#: skl_shared/src/logic.py:1278 skl_shared/src/logic.py:2649
 msgid "Load file \"{}\""
 msgstr "Загрузка файла \"{}\""
 
-#: bin/skl_shared/src/logic.py:1295
+#: skl_shared/src/logic.py:1295
 msgid "Unable to read file \"{}\"!"
 msgstr "Не удается прочитать файл \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:1314
+#: skl_shared/src/logic.py:1314
 msgid "Float is required at input, but found \"{}\"! Return 0.0"
 msgstr ""
 "На входе должно быть число с плавающей запятой, но получено \"{}\"! "
 "Возвращаю 0.0"
 
-#: bin/skl_shared/src/logic.py:1346
+#: skl_shared/src/logic.py:1346
 msgid "Convert \"{}\" to an integer"
 msgstr "Конвертация \"{}\" в целое число"
 
-#: bin/skl_shared/src/logic.py:1349
+#: skl_shared/src/logic.py:1349
 msgid "Integer is required at input, but found \"{}\"! Return 0"
 msgstr "На входе должно быть целое число, но получено \"{}\"! Возвращаю 0"
 
-#: bin/skl_shared/src/logic.py:1522
+#: skl_shared/src/logic.py:1522
 msgid ""
 "Different number of opening and closing brackets: \"{}\": {}; \"{}\": {}!"
 msgstr "Разное число открывающих и закрывающих скобок: \"{}\": {}; \"{}\": {}!"
 
-#: bin/skl_shared/src/logic.py:1672
+#: skl_shared/src/logic.py:1672
 msgid ""
 "Commas and/or semicolons or line breaks can be used, but not altogether!"
 msgstr ""
 "Можно использовать запятые и/или точки с запятой или переносы строк, но не "
 "все сразу!"
 
-#: bin/skl_shared/src/logic.py:1696
+#: skl_shared/src/logic.py:1696
 msgid "Failed to convert \"{}\" to an integer!"
 msgstr "Не удалось конвертировать \"{}\" в целое число!"
 
-#: bin/skl_shared/src/logic.py:1707
+#: skl_shared/src/logic.py:1707
 msgid "Failed to convert \"{}\" to a floating-point number!"
 msgstr "Не удалось конвертировать \"{}\" в число с плавающей точкой!"
 
-#: bin/skl_shared/src/logic.py:1897 bin/skl_shared/src/logic.py:1909
-#: bin/skl_shared/src/logic.py:1941 bin/skl_shared/src/logic.py:2028
+#: skl_shared/src/logic.py:1897 skl_shared/src/logic.py:1909
+#: skl_shared/src/logic.py:1941 skl_shared/src/logic.py:2028
 msgid "Set time parameters are incorrect or not supported."
 msgstr "Заданные параметры времени неверны или не поддерживаются."
 
-#: bin/skl_shared/src/logic.py:1925
+#: skl_shared/src/logic.py:1925
 msgid ""
 "Set time parameters are incorrect or not supported.\n"
 "\n"
@@ -333,61 +321,61 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:1974
+#: skl_shared/src/logic.py:1974
 msgid "Jan"
 msgstr "янв"
 
-#: bin/skl_shared/src/logic.py:1976
+#: skl_shared/src/logic.py:1976
 msgid "Feb"
 msgstr "фев"
 
-#: bin/skl_shared/src/logic.py:1978
+#: skl_shared/src/logic.py:1978
 msgid "Mar"
 msgstr "мар"
 
-#: bin/skl_shared/src/logic.py:1980
+#: skl_shared/src/logic.py:1980
 msgid "Apr"
 msgstr "апр"
 
-#: bin/skl_shared/src/logic.py:1982
+#: skl_shared/src/logic.py:1982
 msgid "May"
 msgstr "май"
 
-#: bin/skl_shared/src/logic.py:1984
+#: skl_shared/src/logic.py:1984
 msgid "Jun"
 msgstr "июн"
 
-#: bin/skl_shared/src/logic.py:1986
+#: skl_shared/src/logic.py:1986
 msgid "Jul"
 msgstr "июл"
 
-#: bin/skl_shared/src/logic.py:1988
+#: skl_shared/src/logic.py:1988
 msgid "Aug"
 msgstr "ав"
 
-#: bin/skl_shared/src/logic.py:1990
+#: skl_shared/src/logic.py:1990
 msgid "Sep"
 msgstr "сен"
 
-#: bin/skl_shared/src/logic.py:1992
+#: skl_shared/src/logic.py:1992
 msgid "Oct"
 msgstr "окт"
 
-#: bin/skl_shared/src/logic.py:1994
+#: skl_shared/src/logic.py:1994
 msgid "Nov"
 msgstr "ноя"
 
-#: bin/skl_shared/src/logic.py:1996
+#: skl_shared/src/logic.py:1996
 msgid "Dec"
 msgstr "дек"
 
-#: bin/skl_shared/src/logic.py:2068
+#: skl_shared/src/logic.py:2068
 msgid "The object \"{}\" is not a file!"
 msgstr "Объект \"{}\" не является файлом!"
 
-#: bin/skl_shared/src/logic.py:2087 bin/skl_shared/src/logic.py:2233
-#: bin/skl_shared/src/logic.py:2724 bin/skl_shared/src/logic.py:2750
-#: bin/skl_shared/src/logic.py:3431
+#: skl_shared/src/logic.py:2087 skl_shared/src/logic.py:2233
+#: skl_shared/src/logic.py:2724 skl_shared/src/logic.py:2750
+#: skl_shared/src/logic.py:3431
 msgid ""
 "Operation has failed!\n"
 "Details: {}"
@@ -395,44 +383,44 @@ msgstr ""
 "Операция завершилась с ошибкой!\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:2096 bin/skl_shared/src/logic.py:2900
+#: skl_shared/src/logic.py:2096 skl_shared/src/logic.py:2900
 msgid "Copy \"{}\" to \"{}\""
 msgstr "Нельзя скопировать \"{}\" сам в себя!"
 
-#: bin/skl_shared/src/logic.py:2102
+#: skl_shared/src/logic.py:2102
 msgid "Failed to copy file \"{}\" to \"{}\"!"
 msgstr "Не удалось скопировать файл \"{}\" в \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2110
+#: skl_shared/src/logic.py:2110
 msgid "Move \"{}\" to \"{}\""
 msgstr "Перемещение \"{}\" в \"{}\""
 
-#: bin/skl_shared/src/logic.py:2116
+#: skl_shared/src/logic.py:2116
 msgid "Failed to move \"{}\" to \"{}\"!"
 msgstr "Не удалось переместить \"{}\" в \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2129 bin/skl_shared/src/logic.py:2176
+#: skl_shared/src/logic.py:2129 skl_shared/src/logic.py:2176
 msgid "Failed to get the date of the file \"{}\"!"
 msgstr "Не удалось определить дату файла \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2140
+#: skl_shared/src/logic.py:2140
 msgid "Unable to copy the file \"{}\" to iself!"
 msgstr "Нельзя скопировать файл \"{}\" сам в себя!"
 
-#: bin/skl_shared/src/logic.py:2148 bin/skl_shared/src/logic.py:2195
-#: bin/skl_shared/src/logic.py:2412 bin/skl_shared/src/shared.py:2356
+#: skl_shared/src/logic.py:2148 skl_shared/src/logic.py:2195
+#: skl_shared/src/logic.py:2412 skl_shared/src/shared.py:2356
 msgid "Operation has been canceled by the user."
 msgstr "Операция отменена пользователем."
 
-#: bin/skl_shared/src/logic.py:2157 bin/skl_shared/src/logic.py:2802
+#: skl_shared/src/logic.py:2157 skl_shared/src/logic.py:2802
 msgid "Delete \"{}\""
 msgstr "Удаление \"{}\""
 
-#: bin/skl_shared/src/logic.py:2163
+#: skl_shared/src/logic.py:2163
 msgid "Failed to delete file \"{}\"!"
 msgstr "Не удается удалить файл \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2187
+#: skl_shared/src/logic.py:2187
 msgid ""
 "Moving is not necessary, because the source and destination are identical "
 "({})."
@@ -440,31 +428,31 @@ msgstr ""
 "Перемещение не требуется, поскольку на входе и выходе указан один и тот же "
 "объект ({})."
 
-#: bin/skl_shared/src/logic.py:2205
+#: skl_shared/src/logic.py:2205
 msgid "Change the time of the file \"{}\" to {}"
 msgstr "Изменение времени файла \"{}\" на {}"
 
-#: bin/skl_shared/src/logic.py:2211
+#: skl_shared/src/logic.py:2211
 msgid "Failed to change the time of the file \"{}\" to \"{}\"!"
 msgstr "Не удалось изменить время файла \"{}\" на \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2261 bin/skl_shared/src/logic.py:2890
+#: skl_shared/src/logic.py:2261 skl_shared/src/logic.py:2890
 msgid "Directory \"{}\" already exists."
 msgstr "Каталог \"{}\" уже существует."
 
-#: bin/skl_shared/src/logic.py:2266
+#: skl_shared/src/logic.py:2266
 msgid "The path \"{}\" is invalid!"
 msgstr "Путь \"{}\" неверен!"
 
-#: bin/skl_shared/src/logic.py:2270
+#: skl_shared/src/logic.py:2270
 msgid "Create directory \"{}\""
 msgstr "Создание каталога \"{}\""
 
-#: bin/skl_shared/src/logic.py:2277
+#: skl_shared/src/logic.py:2277
 msgid "Failed to create directory \"{}\"!"
 msgstr "Не удается создать каталог \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:2385
+#: skl_shared/src/logic.py:2385
 msgid ""
 "Unable to write file \"{}\"!\n"
 "\n"
@@ -474,11 +462,11 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:2498
+#: skl_shared/src/logic.py:2498
 msgid "The following lines cannot be parsed:"
 msgstr "Не удается обработать следующие строки:"
 
-#: bin/skl_shared/src/logic.py:2659
+#: skl_shared/src/logic.py:2659
 msgid ""
 "Unable to read file \"{}\"!\n"
 "\n"
@@ -488,35 +476,35 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:2808
+#: skl_shared/src/logic.py:2808
 msgid "Failed to delete directory \"{}\"! Delete it manually."
 msgstr "Не удается удалить каталог \"{}\"! Удалите его вручную."
 
-#: bin/skl_shared/src/logic.py:2886
+#: skl_shared/src/logic.py:2886
 msgid "Unable to copy \"{}\" to iself!"
 msgstr "Нельзя скопировать \"{}\" сам в себя!"
 
-#: bin/skl_shared/src/logic.py:2906
+#: skl_shared/src/logic.py:2906
 msgid "Failed to copy \"{}\" to \"{}\"!"
 msgstr "Не удалось скопировать \"{}\" в \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:3016
+#: skl_shared/src/logic.py:3016
 msgid "Keys loaded in total: {}"
 msgstr "Всего загружено ключей: {}"
 
-#: bin/skl_shared/src/logic.py:3019
+#: skl_shared/src/logic.py:3019
 msgid "Missing sections: {}"
 msgstr "Отсутствующие разделы: {}"
 
-#: bin/skl_shared/src/logic.py:3023
+#: skl_shared/src/logic.py:3023
 msgid "Missing keys: {}"
 msgstr "Отсутствующие ключи: {}"
 
-#: bin/skl_shared/src/logic.py:3027
+#: skl_shared/src/logic.py:3027
 msgid "Modified keys: {}"
 msgstr "Измененные ключи: {}"
 
-#: bin/skl_shared/src/logic.py:3088
+#: skl_shared/src/logic.py:3088
 msgid ""
 "Failed to open URL \"{}\" in a default browser!\n"
 "\n"
@@ -526,102 +514,102 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:3145
+#: skl_shared/src/logic.py:3145
 msgid "Differences:"
 msgstr "Различия:"
 
-#: bin/skl_shared/src/logic.py:3170
+#: skl_shared/src/logic.py:3170
 msgid "Texts are identical!"
 msgstr "Различий нет!"
 
-#: bin/skl_shared/src/logic.py:3226
+#: skl_shared/src/logic.py:3226
 msgid "Delete the symbolic link \"{}\""
 msgstr "Удаление ярлыка \"{}\""
 
-#: bin/skl_shared/src/logic.py:3231
+#: skl_shared/src/logic.py:3231
 msgid "Failed to remove shortcut \"{}\". Remove it manually and press OK."
 msgstr "Не удается удалить ярлык \"{}\". Удалите его вручную и нажмите OK."
 
-#: bin/skl_shared/src/logic.py:3245 bin/skl_shared/src/logic.py:3269
+#: skl_shared/src/logic.py:3245 skl_shared/src/logic.py:3269
 msgid "Create a symbolic link \"{}\""
 msgstr "Создание ярлыка \"{}\""
 
-#: bin/skl_shared/src/logic.py:3250 bin/skl_shared/src/logic.py:3278
+#: skl_shared/src/logic.py:3250 skl_shared/src/logic.py:3278
 msgid "Failed to create shortcut \"{}\". Create it manually and press OK."
 msgstr "Не удается создать ярлык \"{}\". Создайте его вручную и нажмите OK."
 
-#: bin/skl_shared/src/logic.py:3396
+#: skl_shared/src/logic.py:3396
 msgid "Failed to load an e-mail client."
 msgstr "Не удалось загрузить почтовый клиент."
 
-#: bin/skl_shared/src/logic.py:3434
+#: skl_shared/src/logic.py:3434
 msgid "This operation cannot be executed on your operating system."
 msgstr "Эта операция не может быть выполнена на вашей операционной системе."
 
-#: bin/skl_shared/src/logic.py:3777
+#: skl_shared/src/logic.py:3777
 msgid "Analyze the text"
 msgstr "Анализ текста"
 
-#: bin/skl_shared/src/logic.py:4059
+#: skl_shared/src/logic.py:4059
 msgid "Failed to find words of paragraph #{}!"
 msgstr "Не удалось найти слова абзаца #{}!"
 
-#: bin/skl_shared/src/logic.py:4361 bin/skl_shared/src/logic.py:4362
-#: bin/skl_shared/src/logic.py:5088 bin/skl_shared/src/logic.py:5093
-#: bin/skl_shared/src/logic.py:5094 bin/skl_shared/src/logic.py:5101
-#: bin/skl_shared/src/logic.py:5102
+#: skl_shared/src/logic.py:4361 skl_shared/src/logic.py:4362
+#: skl_shared/src/logic.py:5088 skl_shared/src/logic.py:5093
+#: skl_shared/src/logic.py:5094 skl_shared/src/logic.py:5101
+#: skl_shared/src/logic.py:5102
 msgid "Logic error!"
 msgstr "Логическая ошибка!"
 
-#: bin/skl_shared/src/logic.py:4446 bin/skl_shared/src/logic.py:4454
+#: skl_shared/src/logic.py:4446 skl_shared/src/logic.py:4454
 msgid "The pool is empty!"
 msgstr "Пул пуст!"
 
-#: bin/skl_shared/src/logic.py:4489
+#: skl_shared/src/logic.py:4489
 msgid "The operation has taken {} s."
 msgstr "Операция завершена за {} с."
 
-#: bin/skl_shared/src/logic.py:4665
+#: skl_shared/src/logic.py:4665
 msgid "Unable to use unverified certificates!"
 msgstr "Не удается использовать неподтвержденные сертификаты!"
 
-#: bin/skl_shared/src/logic.py:4683
+#: skl_shared/src/logic.py:4683
 msgid "[OK]: \"{}\""
 msgstr "[Успешно]: \"{}\""
 
-#: bin/skl_shared/src/logic.py:4687
+#: skl_shared/src/logic.py:4687
 msgid "[FAILED]: \"{}\". Details: {}"
 msgstr "[ОШИБКА]: \"{}\". Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:4703
+#: skl_shared/src/logic.py:4703
 msgid "Unable to decode \"{}\"!"
 msgstr "Не удается изменить кодировку \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:4722
+#: skl_shared/src/logic.py:4722
 msgid "Wrong input data: {}!"
 msgstr "Недопустимые входные данные: \"{}\"!"
 
-#: bin/skl_shared/src/logic.py:4787
+#: skl_shared/src/logic.py:4787
 msgid "No references have been found!"
 msgstr "Ориентиры не найдены!"
 
-#: bin/skl_shared/src/logic.py:4791
+#: skl_shared/src/logic.py:4791
 msgid "No references to the right!"
 msgstr "Справа ориентиров нет!"
 
-#: bin/skl_shared/src/logic.py:4795
+#: skl_shared/src/logic.py:4795
 msgid "No references to the left!"
 msgstr "Слева ориентиров нет!"
 
-#: bin/skl_shared/src/logic.py:4871
+#: skl_shared/src/logic.py:4871
 msgid "Unexpected end of text!"
 msgstr "Неожиданный конец текста!"
 
-#: bin/skl_shared/src/logic.py:5047
+#: skl_shared/src/logic.py:5047
 msgid ","
 msgstr "."
 
-#: bin/skl_shared/src/logic.py:5059
+#: skl_shared/src/logic.py:5059
 msgid ""
 "Operation has failed!\n"
 "\n"
@@ -631,91 +619,91 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/logic.py:5077
+#: skl_shared/src/logic.py:5077
 msgid "Plain text (UTF-8)"
 msgstr "Обычный текст (UTF-8)"
 
-#: bin/skl_shared/src/logic.py:5078 bin/skl_shared/src/logic.py:5079
+#: skl_shared/src/logic.py:5078 skl_shared/src/logic.py:5079
 msgid "Web-page"
 msgstr "Веб-страница"
 
-#: bin/skl_shared/src/logic.py:5080
+#: skl_shared/src/logic.py:5080
 msgid "All files"
 msgstr "Все файлы"
 
-#: bin/skl_shared/src/logic.py:5085
+#: skl_shared/src/logic.py:5085
 msgid "Save As:"
 msgstr "Сохранить как:"
 
-#: bin/skl_shared/src/logic.py:5090
+#: skl_shared/src/logic.py:5090
 msgid "Nothing to do!"
 msgstr "Действие не требуется."
 
-#: bin/skl_shared/src/logic.py:5111 bin/skl_shared/src/logic.py:5133
+#: skl_shared/src/logic.py:5111 skl_shared/src/logic.py:5133
 msgid "B"
 msgstr "Б"
 
-#: bin/skl_shared/src/logic.py:5124
+#: skl_shared/src/logic.py:5124
 msgid "TiB"
 msgstr "ТиБ"
 
-#: bin/skl_shared/src/logic.py:5126
+#: skl_shared/src/logic.py:5126
 msgid "GiB"
 msgstr "ГиБ"
 
-#: bin/skl_shared/src/logic.py:5128
+#: skl_shared/src/logic.py:5128
 msgid "MiB"
 msgstr "МиБ"
 
-#: bin/skl_shared/src/logic.py:5131
+#: skl_shared/src/logic.py:5131
 msgid "KiB"
 msgstr "КиБ"
 
-#: bin/skl_shared/src/logic.py:5241
+#: skl_shared/src/logic.py:5241
 msgid "ATTENTION: Do yo really want to rewrite file \"{}\"?"
 msgstr "ВНИМАНИЕ: Перезаписать файл \"{}\"?"
 
-#: bin/skl_shared/src/logic.py:5271 bin/skl_shared/src/logic.py:5304
+#: skl_shared/src/logic.py:5271 skl_shared/src/logic.py:5304
 msgid "sec"
 msgstr "сек"
 
-#: bin/skl_shared/src/logic.py:5292
+#: skl_shared/src/logic.py:5292
 msgid "yrs"
 msgstr "лет"
 
-#: bin/skl_shared/src/logic.py:5294
+#: skl_shared/src/logic.py:5294
 msgid "mths"
 msgstr "мес"
 
-#: bin/skl_shared/src/logic.py:5296
+#: skl_shared/src/logic.py:5296
 msgid "wks"
 msgstr "нед"
 
-#: bin/skl_shared/src/logic.py:5298
+#: skl_shared/src/logic.py:5298
 msgid "days"
 msgstr "дн"
 
-#: bin/skl_shared/src/logic.py:5300
+#: skl_shared/src/logic.py:5300
 msgid "hrs"
 msgstr "ч"
 
-#: bin/skl_shared/src/logic.py:5302
+#: skl_shared/src/logic.py:5302
 msgid "min"
 msgstr "мин"
 
-#: bin/skl_shared/src/logic.py:5318
+#: skl_shared/src/logic.py:5318
 msgid "Operation has been canceled."
 msgstr "Операция отменена."
 
-#: bin/skl_shared/src/logic.py:5328
+#: skl_shared/src/logic.py:5328
 msgid "Not implemented yet!"
 msgstr "Еще не реализовано!"
 
-#: bin/skl_shared/src/regexp.py:56
+#: skl_shared/src/regexp.py:56
 msgid "A syntax error in the regular expression (id: {})!"
 msgstr "Синтаксическая ошибка в регулярном выражении (запись: {})!"
 
-#: bin/skl_shared/src/regexp.py:69
+#: skl_shared/src/regexp.py:69
 msgid ""
 "Regular expression {} has failed: we were expecting\n"
 "\"{}\",\n"
@@ -727,208 +715,208 @@ msgstr ""
 "получили\n"
 "\"{}\"."
 
-#: bin/skl_shared/src/shared.py:386 bin/skl_shared/src/shared.py:410
+#: skl_shared/src/shared.py:386 skl_shared/src/shared.py:410
 msgid "Compare texts:"
 msgstr "Сравните тексты:"
 
-#: bin/skl_shared/src/shared.py:594
+#: skl_shared/src/shared.py:594
 msgid "Find:"
 msgstr "Найти:"
 
-#: bin/skl_shared/src/shared.py:641 bin/skl_shared/src/shared.py:740
-#: bin/skl_shared/src/shared.py:763
+#: skl_shared/src/shared.py:641 skl_shared/src/shared.py:740
+#: skl_shared/src/shared.py:763
 msgid "No matches!"
 msgstr "Совпадений нет!"
 
-#: bin/skl_shared/src/shared.py:732 bin/skl_shared/src/shared.py:754
+#: skl_shared/src/shared.py:732 skl_shared/src/shared.py:754
 msgid "Only one match has been found!"
 msgstr "Найдено 1 совпадение!"
 
-#: bin/skl_shared/src/shared.py:736
+#: skl_shared/src/shared.py:736
 msgid "No more matches, continuing from the top!"
 msgstr "Совпадений больше нет, поиск продолжен с начала!"
 
-#: bin/skl_shared/src/shared.py:759
+#: skl_shared/src/shared.py:759
 msgid "No more matches, continuing from the bottom!"
 msgstr "Совпадений больше нет, поиск продолжен с конца!"
 
-#: bin/skl_shared/src/shared.py:850
+#: skl_shared/src/shared.py:850
 msgid "No selection!"
 msgstr "Выделение отсутствует!"
 
-#: bin/skl_shared/src/shared.py:1036
+#: skl_shared/src/shared.py:1036
 msgid "{} tags to assign"
 msgstr "Создание {} тегов"
 
-#: bin/skl_shared/src/shared.py:1042
+#: skl_shared/src/shared.py:1042
 msgid "Spelling seems to be correct."
 msgstr "Ошибок правописания не обнаружено."
 
-#: bin/skl_shared/src/shared.py:1105 bin/skl_shared/src/shared.py:1177
-#: bin/skl_shared/src/shared.py:1675 bin/skl_shared/src/shared.py:1956
-#: bin/skl_shared/src/shared.py:3102
+#: skl_shared/src/shared.py:1105 skl_shared/src/shared.py:1177
+#: skl_shared/src/shared.py:1675 skl_shared/src/shared.py:1956
+#: skl_shared/src/shared.py:3102
 msgid "Close"
 msgstr "Закрыть"
 
-#: bin/skl_shared/src/shared.py:1106 bin/skl_shared/src/shared.py:1957
+#: skl_shared/src/shared.py:1106 skl_shared/src/shared.py:1957
 msgid "Close this window"
 msgstr "Закрыть это окно"
 
-#: bin/skl_shared/src/shared.py:1178 bin/skl_shared/src/shared.py:1674
-#: bin/skl_shared/src/shared.py:3101 bin/skl_shared/src/shared.py:4346
+#: skl_shared/src/shared.py:1178 skl_shared/src/shared.py:1674
+#: skl_shared/src/shared.py:3101 skl_shared/src/shared.py:4346
 msgid "Reject and close"
 msgstr "Отказаться и закрыть"
 
-#: bin/skl_shared/src/shared.py:1186
+#: skl_shared/src/shared.py:1186
 msgid "Reset"
 msgstr "Сброс"
 
-#: bin/skl_shared/src/shared.py:1187
+#: skl_shared/src/shared.py:1187
 msgid "Restore the text"
 msgstr "Восстановить текст"
 
-#: bin/skl_shared/src/shared.py:1193
+#: skl_shared/src/shared.py:1193
 msgid "Save"
 msgstr "Сохранить"
 
-#: bin/skl_shared/src/shared.py:1194 bin/skl_shared/src/shared.py:1688
-#: bin/skl_shared/src/shared.py:3109 bin/skl_shared/src/shared.py:4338
-#: bin/skl_shared/src/shared.py:4352
+#: skl_shared/src/shared.py:1194 skl_shared/src/shared.py:1688
+#: skl_shared/src/shared.py:3109 skl_shared/src/shared.py:4338
+#: skl_shared/src/shared.py:4352
 msgid "Accept and close"
 msgstr "Принять и закрыть"
 
-#: bin/skl_shared/src/shared.py:1681
+#: skl_shared/src/shared.py:1681
 msgid "Clear the field"
 msgstr "Очистить поле"
 
-#: bin/skl_shared/src/shared.py:1682
+#: skl_shared/src/shared.py:1682
 msgid "Clear"
 msgstr "Очистить"
 
-#: bin/skl_shared/src/shared.py:1689 bin/skl_shared/src/shared.py:3110
+#: skl_shared/src/shared.py:1689 skl_shared/src/shared.py:3110
 msgid "Save and close"
 msgstr "Запомнить и выйти"
 
-#: bin/skl_shared/src/shared.py:1950
+#: skl_shared/src/shared.py:1950
 msgid "Toggle all"
 msgstr "Переключить все"
 
-#: bin/skl_shared/src/shared.py:1951
+#: skl_shared/src/shared.py:1951
 msgid "Mark/unmark all checkboxes"
 msgstr "Добавить/убрать все пометы"
 
-#: bin/skl_shared/src/shared.py:1983
+#: skl_shared/src/shared.py:1983
 msgid "Select files:"
 msgstr "Выберите файлы:"
 
-#: bin/skl_shared/src/shared.py:2151 bin/skl_shared/src/shared.py:2166
-#: bin/skl_shared/src/shared.py:2326 bin/skl_shared/src/shared.py:3392
-#: bin/skl_shared/src/shared.py:3435 bin/skl_shared/src/shared.py:3437
+#: skl_shared/src/shared.py:2151 skl_shared/src/shared.py:2166
+#: skl_shared/src/shared.py:2326 skl_shared/src/shared.py:3392
+#: skl_shared/src/shared.py:3435 skl_shared/src/shared.py:3437
 msgid "Please wait..."
 msgstr "Подождите..."
 
-#: bin/skl_shared/src/shared.py:2169 bin/skl_shared/src/shared.py:2184
-#: bin/skl_shared/src/shared.py:2329
+#: skl_shared/src/shared.py:2169 skl_shared/src/shared.py:2184
+#: skl_shared/src/shared.py:2329
 msgid "The required widget has not been created yet!"
 msgstr "Требуемый виджет еще не был создан!"
 
-#: bin/skl_shared/src/shared.py:2586
+#: skl_shared/src/shared.py:2586
 msgid "Clipboard is empty!"
 msgstr "Буфер обмена пуст!"
 
-#: bin/skl_shared/src/shared.py:2616
+#: skl_shared/src/shared.py:2616
 msgid "Paste a special symbol"
 msgstr "Вставить специальный символ"
 
-#: bin/skl_shared/src/shared.py:2893
+#: skl_shared/src/shared.py:2893
 msgid "Remove item #{}"
 msgstr "Удаление элемента №{}"
 
-#: bin/skl_shared/src/shared.py:2896
+#: skl_shared/src/shared.py:2896
 msgid "No item #{}!"
 msgstr "Элемент №{} отсутствует!"
 
-#: bin/skl_shared/src/shared.py:2964
+#: skl_shared/src/shared.py:2964
 msgid "Item \"{}\" is not in list!"
 msgstr "Элемент \"{}\" не в списке!"
 
-#: bin/skl_shared/src/shared.py:3310
+#: skl_shared/src/shared.py:3310
 msgid "Set the geometry to \"{}x{}+{}+{}\""
 msgstr "Изменение геометрии виджета на \"{}x{}+{}+{}\""
 
-#: bin/skl_shared/src/shared.py:3788
+#: skl_shared/src/shared.py:3788
 msgid "Widget width ({}) should not exceed screen width ({})!"
 msgstr "Ширина виджета ({}) не должна превышать ширины экрана ({})!"
 
-#: bin/skl_shared/src/shared.py:3799
+#: skl_shared/src/shared.py:3799
 msgid "Widget height ({}) should not exceed screen height ({})!"
 msgstr "Длина виджета ({}) не должна превышать длины экрана ({})!"
 
-#: bin/skl_shared/src/shared.py:3828
+#: skl_shared/src/shared.py:3828
 msgid "Widget 1 geometry: {}x{}+{}+{}"
 msgstr "Геометрия виджета 1: {}x{}+{}+{}"
 
-#: bin/skl_shared/src/shared.py:3834
+#: skl_shared/src/shared.py:3834
 msgid "Widget 2 geometry: {}x{}+{}+{}"
 msgstr "Геометрия виджета 2: {}x{}+{}+{}"
 
-#: bin/skl_shared/src/shared.py:3931
+#: skl_shared/src/shared.py:3931
 msgid "Wrong font: \"{}\"!"
 msgstr "Неправильный шрифт: \"{}\"!"
 
-#: bin/skl_shared/src/shared.py:3981
+#: skl_shared/src/shared.py:3981
 msgid "Save geometry: {}"
 msgstr "Сохранение геометрии: {}"
 
-#: bin/skl_shared/src/shared.py:3990
+#: skl_shared/src/shared.py:3990
 msgid "Restore geometry: {}"
 msgstr "Восстановление геометрии: {}"
 
-#: bin/skl_shared/src/shared.py:4009
+#: skl_shared/src/shared.py:4009
 msgid "Failed to change window properties!"
 msgstr "Не удалось изменить свойства окна!"
 
-#: bin/skl_shared/src/shared.py:4094
+#: skl_shared/src/shared.py:4094
 msgid "Failed to get the window handle!"
 msgstr "Не удалось получить дескриптор окна!"
 
-#: bin/skl_shared/src/shared.py:4205 bin/skl_shared/src/shared.py:4547
+#: skl_shared/src/shared.py:4205 skl_shared/src/shared.py:4547
 msgid "Test:"
 msgstr "Тест:"
 
-#: bin/skl_shared/src/shared.py:4330
+#: skl_shared/src/shared.py:4330
 msgid "Yes"
 msgstr "Да"
 
-#: bin/skl_shared/src/shared.py:4331
+#: skl_shared/src/shared.py:4331
 msgid "No"
 msgstr "Нет"
 
-#: bin/skl_shared/src/shared.py:4334
+#: skl_shared/src/shared.py:4334
 msgid "Cancel"
 msgstr "Отмена"
 
-#: bin/skl_shared/src/shared.py:4502
+#: skl_shared/src/shared.py:4502
 msgid "N/A"
 msgstr "Н/Д"
 
-#: bin/skl_shared/src/shared.py:4514
+#: skl_shared/src/shared.py:4514
 msgid "SECTION"
 msgstr "СЕКЦИЯ"
 
-#: bin/skl_shared/src/shared.py:4514
+#: skl_shared/src/shared.py:4514
 msgid "KEY"
 msgstr "КЛЮЧ"
 
-#: bin/skl_shared/src/shared.py:4514
+#: skl_shared/src/shared.py:4514
 msgid "VALUE"
 msgstr "ЗНАЧЕНИЕ"
 
-#: bin/skl_shared/src/shared.py:4534
+#: skl_shared/src/shared.py:4534
 msgid "An unknown color \"{}\"!"
 msgstr "Неизвестный цвет \"{}\"!"
 
-#: bin/skl_shared/src/shared.py:4562
+#: skl_shared/src/shared.py:4562
 msgid ""
 "The operation has failed!\n"
 "\n"
@@ -938,147 +926,147 @@ msgstr ""
 "\n"
 "Подробности: {}"
 
-#: bin/skl_shared/src/shared.py:4579
+#: skl_shared/src/shared.py:4579
 msgid "Failed to enable key combination \"{}\"!"
 msgstr "Не удалось задействовать сочетание клавиш \"{}\"!"
 
-#: bin/skl_shared/src/shared.py:4583
+#: skl_shared/src/shared.py:4583
 msgid "Wrong input data: \"{}\""
 msgstr "Недопустимые входные данные: \"{}\"!"
 
-#: bin/skl_shared/src/tests.py:73 bin/skl_shared/src/tests.py:90
-#: bin/skl_shared/src/tests.py:110 bin/skl_shared/src/tests.py:129
+#: skl_shared/src/tests.py:73 skl_shared/src/tests.py:90
+#: skl_shared/src/tests.py:110 skl_shared/src/tests.py:129
 msgid "Variant #{}"
 msgstr "Вариант №{}"
 
-#: bin/skl_shared/src/tests.py:76
+#: skl_shared/src/tests.py:76
 msgid "Description: no settings"
 msgstr "Описание: нет настроек"
 
-#: bin/skl_shared/src/tests.py:93
+#: skl_shared/src/tests.py:93
 msgid "Description: headers"
 msgstr "Описание: заголовки"
 
-#: bin/skl_shared/src/tests.py:113
+#: skl_shared/src/tests.py:113
 msgid "Description: transposition"
 msgstr "Описание: транспозиция"
 
-#: bin/skl_shared/src/tests.py:132
+#: skl_shared/src/tests.py:132
 msgid "Description: transposition and headers"
 msgstr "Описание: транспозиция и заголовки"
 
-#: bin/skl_shared/src/tests.py:151 bin/skl_shared/src/tests.py:166
-#: bin/skl_shared/src/tests.py:178 bin/skl_shared/src/tests.py:199
-#: bin/skl_shared/src/tests.py:221 bin/skl_shared/src/tests.py:243
-#: bin/skl_shared/src/tests.py:267 bin/skl_shared/src/tests.py:298
-#: bin/skl_shared/src/tests.py:309 bin/skl_shared/src/tests.py:331
-#: bin/skl_shared/src/tests.py:347 bin/skl_shared/src/tests.py:364
-#: bin/skl_shared/src/tests.py:386 bin/skl_shared/src/tests.py:402
-#: bin/skl_shared/src/tests.py:414 bin/skl_shared/src/tests.py:450
-#: bin/skl_shared/src/tests.py:467 bin/skl_shared/src/tests.py:479
-#: bin/skl_shared/src/tests.py:486 bin/skl_shared/src/tests.py:513
-#: bin/skl_shared/src/tests.py:548 bin/skl_shared/src/tests.py:566
-#: bin/skl_shared/src/tests.py:613 bin/skl_shared/src/tests.py:662
-#: bin/skl_shared/src/tests.py:702 bin/skl_shared/src/tests.py:758
-#: bin/skl_shared/src/tests.py:818 bin/skl_shared/src/tests.py:841
-#: bin/skl_shared/src/tests.py:854 bin/skl_shared/src/tests.py:881
-#: bin/skl_shared/src/tests.py:894 bin/skl_shared/src/tests.py:929
-#: bin/skl_shared/src/tests.py:941 bin/skl_shared/src/tests.py:985
-#: bin/skl_shared/src/tests.py:1037
+#: skl_shared/src/tests.py:151 skl_shared/src/tests.py:166
+#: skl_shared/src/tests.py:178 skl_shared/src/tests.py:199
+#: skl_shared/src/tests.py:221 skl_shared/src/tests.py:243
+#: skl_shared/src/tests.py:267 skl_shared/src/tests.py:298
+#: skl_shared/src/tests.py:309 skl_shared/src/tests.py:331
+#: skl_shared/src/tests.py:347 skl_shared/src/tests.py:364
+#: skl_shared/src/tests.py:386 skl_shared/src/tests.py:402
+#: skl_shared/src/tests.py:414 skl_shared/src/tests.py:450
+#: skl_shared/src/tests.py:467 skl_shared/src/tests.py:479
+#: skl_shared/src/tests.py:486 skl_shared/src/tests.py:513
+#: skl_shared/src/tests.py:548 skl_shared/src/tests.py:566
+#: skl_shared/src/tests.py:613 skl_shared/src/tests.py:662
+#: skl_shared/src/tests.py:702 skl_shared/src/tests.py:758
+#: skl_shared/src/tests.py:818 skl_shared/src/tests.py:841
+#: skl_shared/src/tests.py:854 skl_shared/src/tests.py:881
+#: skl_shared/src/tests.py:894 skl_shared/src/tests.py:929
+#: skl_shared/src/tests.py:941 skl_shared/src/tests.py:985
+#: skl_shared/src/tests.py:1037
 msgid "Run \"{}\". Press any key to continue"
 msgstr "Запуск \"{}\". Нажмите любую клавишу для продолжения."
 
-#: bin/skl_shared/src/tests.py:194 bin/skl_shared/src/tests.py:216
-#: bin/skl_shared/src/tests.py:238 bin/skl_shared/src/tests.py:293
-#: bin/skl_shared/src/tests.py:304 bin/skl_shared/src/tests.py:359
+#: skl_shared/src/tests.py:194 skl_shared/src/tests.py:216
+#: skl_shared/src/tests.py:238 skl_shared/src/tests.py:293
+#: skl_shared/src/tests.py:304 skl_shared/src/tests.py:359
 msgid "Output: \"{}\""
 msgstr "Вывод: \"{}\""
 
-#: bin/skl_shared/src/tests.py:452
+#: skl_shared/src/tests.py:452
 msgid "Copy something to clipboard"
 msgstr "Скопируйте что-нибудь в буфер обмена"
 
-#: bin/skl_shared/src/tests.py:455 bin/skl_shared/src/tests.py:462
+#: skl_shared/src/tests.py:455 skl_shared/src/tests.py:462
 msgid "Clipboard contents: \"{}\""
 msgstr "Содержание буфера обмена: \"{}\""
 
-#: bin/skl_shared/src/tests.py:458
+#: skl_shared/src/tests.py:458
 msgid "The following will be copied: \"{}\""
 msgstr "Будет скопировано следующее: \"{}\""
 
-#: bin/skl_shared/src/tests.py:474 bin/skl_shared/src/tests.py:481
-#: bin/skl_shared/src/tests.py:543
+#: skl_shared/src/tests.py:474 skl_shared/src/tests.py:481
+#: skl_shared/src/tests.py:543
 msgid "Your input: \"{}\""
 msgstr "Вы ввели: \"{}\""
 
-#: bin/skl_shared/src/tests.py:504
+#: skl_shared/src/tests.py:504
 msgid "New settings"
 msgstr "Новые настройки"
 
-#: bin/skl_shared/src/tests.py:529
+#: skl_shared/src/tests.py:529
 msgid "Your final selection: \"{}\""
 msgstr "Ваш конечный выбор: \"{}\""
 
-#: bin/skl_shared/src/tests.py:647
+#: skl_shared/src/tests.py:647
 msgid "The event has been triggered!"
 msgstr "Событие вызвано!"
 
-#: bin/skl_shared/src/tests.py:665
+#: skl_shared/src/tests.py:665
 msgid "Button"
 msgstr "Кнопка"
 
-#: bin/skl_shared/src/tests.py:669
+#: skl_shared/src/tests.py:669
 msgid "Trigger an event"
 msgstr "Вызвать событие"
 
-#: bin/skl_shared/src/tests.py:738
+#: skl_shared/src/tests.py:738
 msgid "Screen resolution: {}x{}"
 msgstr "Разрешение экрана: {}x{}"
 
-#: bin/skl_shared/src/tests.py:740
+#: skl_shared/src/tests.py:740
 msgid "Random coordinates: x: {}; y: {}"
 msgstr "Случайные координаты: x: {}; y: {}"
 
-#: bin/skl_shared/src/tests.py:873
+#: skl_shared/src/tests.py:873
 msgid "Window handle (Windows-only): {}"
 msgstr "Дескриптор окна (только Windows): {}"
 
-#: bin/skl_shared/src/tests.py:903 bin/skl_shared/src/tests.py:918
+#: skl_shared/src/tests.py:903 skl_shared/src/tests.py:918
 msgid "You answered Yes"
 msgstr "Вы ответили Да"
 
-#: bin/skl_shared/src/tests.py:905 bin/skl_shared/src/tests.py:920
+#: skl_shared/src/tests.py:905 skl_shared/src/tests.py:920
 msgid "You answered No"
 msgstr "Вы ответили Нет"
 
-#: bin/skl_shared/src/tests.py:936
+#: skl_shared/src/tests.py:936
 msgid "Font size: {}x{}"
 msgstr "Размер шрифта: {}x{}"
 
-#: bin/skl_shared/src/tests.py:945 bin/skl_shared/src/tests.py:954
-#: bin/skl_shared/src/tests.py:963 bin/skl_shared/src/tests.py:972
-#: bin/skl_shared/src/tests.py:989 bin/skl_shared/src/tests.py:998
-#: bin/skl_shared/src/tests.py:1007 bin/skl_shared/src/tests.py:1016
-#: bin/skl_shared/src/tests.py:1025
+#: skl_shared/src/tests.py:945 skl_shared/src/tests.py:954
+#: skl_shared/src/tests.py:963 skl_shared/src/tests.py:972
+#: skl_shared/src/tests.py:989 skl_shared/src/tests.py:998
+#: skl_shared/src/tests.py:1007 skl_shared/src/tests.py:1016
+#: skl_shared/src/tests.py:1025
 msgid "Test #{}"
 msgstr "Тест №{}"
 
-#: bin/skl_shared/src/tests.py:950 bin/skl_shared/src/tests.py:959
-#: bin/skl_shared/src/tests.py:968 bin/skl_shared/src/tests.py:977
+#: skl_shared/src/tests.py:950 skl_shared/src/tests.py:959
+#: skl_shared/src/tests.py:968 skl_shared/src/tests.py:977
 msgid "Path: \"{}\"; free space: {}"
 msgstr "Путь: \"{}\"; свободное место: {}"
 
-#: bin/skl_shared/src/tests.py:994 bin/skl_shared/src/tests.py:1003
-#: bin/skl_shared/src/tests.py:1012 bin/skl_shared/src/tests.py:1021
-#: bin/skl_shared/src/tests.py:1030
+#: skl_shared/src/tests.py:994 skl_shared/src/tests.py:1003
+#: skl_shared/src/tests.py:1012 skl_shared/src/tests.py:1021
+#: skl_shared/src/tests.py:1030
 msgid "Object: \"{}\"; size: {}"
 msgstr "Объект: \"{}\"; размер: {}"
 
-#: bin/skl_shared/src/tests.py:1071 bin/skl_shared/src/tests.py:1104
+#: skl_shared/src/tests.py:1071 skl_shared/src/tests.py:1104
 msgid "Press Return to place widgets randomly"
 msgstr "Нажмите Ввод, чтобы расположить виджеты случайным образом"
 
-#: bin/skl_shared/src/tests.py:1075
+#: skl_shared/src/tests.py:1075
 msgid ""
 "Anchor: {}\n"
 "Press Return to adjust Widget 2"
@@ -1086,195 +1074,6 @@ msgstr ""
 "Привязка: {}\n"
 "Нажмите Ввод для подгонки Виджета 2"
 
-#: bin/skl_shared/src/tests.py:1127
+#: skl_shared/src/tests.py:1127
 msgid "Anchor: {}"
 msgstr "Привязка: {}"
-
-#~ msgid "Failed to restore geometry!"
-#~ msgstr "Не удалось восстановить геометрию!"
-
-#~ msgid "Write \"{}\""
-#~ msgstr "Запись \"{}\""
-
-#~ msgid "Section \"{}\" does not have key \"{}\"!"
-#~ msgstr "В секции \"{}\" нет ключа \"{}\"!"
-
-#~ msgid "The following sections and/or keys are missing:"
-#~ msgstr "ОШИБКА"
-
-#~ msgid "New value of the key \"{}\" has been loaded."
-#~ msgstr "Загружено новое значение ключа \"{}\"."
-
-#~ msgid "Keys loaded in total: {}, whereas {} are modified."
-#~ msgstr "Всего загружено ключей: {}, из них измененных: {}"
-
-#~ msgid "The default configuration has been loaded."
-#~ msgstr "Загружена конфигурация по умолчанию."
-
-#~ msgid ""
-#~ "Failed to read the configuration file \"{}\". This file must share the "
-#~ "same directory with the program and have UTF-8 encoding (no BOM) and UNIX "
-#~ "line break type."
-#~ msgstr ""
-#~ "Не удается прочитать конфигурационный файл \"{}\". Этот файл должен "
-#~ "находиться в одном каталоге с программой и иметь кодировку UTF-8 (без "
-#~ "BOM), тип разрыва строки - UNIX."
-
-#~ msgid "File: \"{}\"; {}/{} MB; Rate: {} kbps; ETA: {}s"
-#~ msgstr "Файл: \"{}\"; {}/{} Мб; Скорость: {} Кб/с; Осталось: {}с"
-
-#~ msgid "Cannot print the message!"
-#~ msgstr "Не удаётся показать сообщение!"
-
-#~ msgid "Failed to select a file!"
-#~ msgstr "Не удалось выбрать файл!"
-
-#~ msgid "Note: it will be Monday!"
-#~ msgstr "Обратите внимание: указанная дата - понедельник!"
-
-#~ msgid "Mexico"
-#~ msgstr "Мексика"
-
-#~ msgid "Canada"
-#~ msgstr "Канада"
-
-#~ msgid "Russia"
-#~ msgstr "Россия"
-
-#~ msgid "Empty strings are not supported!"
-#~ msgstr "Поддерживаются только непустые строки!"
-
-#~ msgid "Nothing to do."
-#~ msgstr "Действие не требуется."
-
-#~ msgid "Failed to insert the text!"
-#~ msgstr "Не удалось вставить текст!"
-
-#~ msgid "A logic error: unknown object type: \"%s\"!"
-#~ msgstr "Логическая ошибка: неизвестный тип объекта: \"%s\"!"
-
-#~ msgid "Text:"
-#~ msgstr "Текст:"
-
-#~ msgid "Quit"
-#~ msgstr "Выйти"
-
-#~ msgid "Title:"
-#~ msgstr "Заголовок:"
-
-#~ msgid "Failed to remove the tag %s in the widget %s in positions %s-%s!"
-#~ msgstr "Не удалось удалить тэг %s в виджете %s для позиций %s-%s!"
-
-#~ msgid "DEBUG-ERROR"
-#~ msgstr "ОШИБКА ПРИ ОТЛАДКЕ"
-
-#~ msgid "Element \"%s\" has not been found in fragment \"%s\"!"
-#~ msgstr "Элемент \"%s\" не был найден во фрагменте \"%s\"!"
-
-#~ msgid "Failed to add tag \"%s\" for positions %s-%s!"
-#~ msgstr "Не удалось добавить тэг \"%s\" для позиций %s-%s!"
-
-#~ msgid ""
-#~ "Failed to configure tag \"%s\" to have the background of color \"%s\"!"
-#~ msgstr "Не удалось назначить тэгу \"%s\" фон \"%s\"!"
-
-#~ msgid ""
-#~ "Failed to configure tag \"%s\" to have the foreground of color \"%s\"!"
-#~ msgstr "Не удалось назначить тэгу \"%s\" цвет \"%s\"!"
-
-#~ msgid "Failed to configure tag \"%s\" to have the font \"%s\"!"
-#~ msgstr "Не удалось назначить тэгу \"%s\" шрифт \"%s\"!"
-
-#~ msgid "Failed to insert mark \"%s\" in position \"%s\"!"
-#~ msgstr "Не удается вставить метку \"%s\" для позиции \"%s\"!"
-
-#~ msgid "Failed to remove mark \"%s\"!"
-#~ msgstr "Не удалось удалить метку \"%s\"!"
-
-#~ msgid "Failed to shift screen to label \"%s\"!"
-#~ msgstr "Не удалось сдвинуть экран до метки \"%s\"!"
-
-#~ msgid "Got position: \"%s\""
-#~ msgstr "Получена позиция: \"%s\""
-
-#~ msgid "Cannot return a cursor position!"
-#~ msgstr "Не удалось вернуть позицию курсора!"
-
-#~ msgid "Failed to return selection in the Tkinter widget!"
-#~ msgstr "Не удается вернуть диапазон выделения в виджете Tkinter!"
-
-#~ msgid "Message"
-#~ msgstr "Сообщение"
-
-#~ msgid "CRITICAL"
-#~ msgstr "КРИТИЧЕСКАЯ ОШИБКА"
-
-#~ msgid "Picture \"%s\" was not found!"
-#~ msgstr "Изображение \"%s\" не найдено!"
-
-#~ msgid "A clipboard error has occurred!"
-#~ msgstr "Ошибка буфера обмена!"
-
-#~ msgid "An unknown error has occurred."
-#~ msgstr "Произошла неизвестная ошибка."
-
-#~ msgid "Failed to paste the clipboard contents!"
-#~ msgstr "Ошибка вставки из буфера обмена."
-
-#~ msgid "Add %s"
-#~ msgstr "Добавить %s"
-
-#~ msgid "Close %d objs"
-#~ msgstr "Закрыть %d объектов"
-
-#~ msgid "Widget \"%s\" does not have a \"close\" action!"
-#~ msgstr "У виджета \"%s\" нет действия \"close\"!"
-
-#~ msgid "***** Start of log. *****"
-#~ msgstr "***** Начало записи лога. *****"
-
-#~ msgid "Failed to open URL \"%s\" in a default browser!"
-#~ msgstr "Не удалось открыть адрес \"%s\" в браузере по умолчанию!"
-
-#~ msgid "Text with instructions:"
-#~ msgstr "Текст с инструкциями:"
-
-#~ msgid "Parent is not supported, using the default one."
-#~ msgstr ""
-#~ "Родительский виджет не поддерживается, будет использован виджет по "
-#~ "умолчанию."
-
-#~ msgid "Delete all text"
-#~ msgstr "Удалить весь текст"
-
-#~ msgid "Manage subscriptions"
-#~ msgstr "Управление подписками"
-
-#~ msgid "Add"
-#~ msgstr "Добавить"
-
-#~ msgid "Remove"
-#~ msgstr "Удалить"
-
-#~ msgid "Enter a channel URL, one URL per a line:"
-#~ msgstr "Введите адрес канала, по одному URL на строку:"
-
-#~ msgid "Patterns: %s"
-#~ msgstr "Примеры: %s"
-
-#~ msgid "Manage blacklist"
-#~ msgstr "Управление черным списком"
-
-#~ msgid "Perform actions"
-#~ msgstr "Выполнение операций"
-
-#~ msgid "Mark \"%s\" has been inserted in position \"%s\"."
-#~ msgstr "Метка \"%s\" вставлена в позиции \"%s\"."
-
-#~ msgid "Mark \"%s\" has been removed."
-#~ msgstr "Метка \"%s\" была удалена."
-
-#~ msgid ""
-#~ "Nothing is selected in window %d, therefore, it is not possible to return "
-#~ "coordinates!"
-#~ msgstr "В окне %d нет выделения, поэтому координаты вернуть нельзя!"
