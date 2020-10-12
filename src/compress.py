@@ -279,9 +279,8 @@ objs = Objects()
 if __name__ == '__main__':
     f = '__main__'
     sh.com.start()
-    #path = '/media/WD/MY_PHOTOS/Смартфон'
-    path = '/home/pete/tmp/TestSmartphone'
-    pathw = '/home/pete/tmp/WriteSmartphone'
+    path = '/media/WD/MY_PHOTOS/Смартфон'
+    pathw = '/home/pete/tmp/Смартфон (конвертировано)'
     Converter(path,pathw).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f,mes,True).show_debug()
