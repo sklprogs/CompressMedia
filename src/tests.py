@@ -1,10 +1,44 @@
 #!/usr/bin/python3
 # -*- coding: UTF-8 -*-
 
+import os
 import copy
 
 import skl_shared.shared as sh
 from skl_shared.localize import _
+
+PATH = '/media/WD/MY_PHOTOS/Смартфон'
+PATHW = '/home/pete/tmp/Смартфон (конвертировано)'
+
+
+class Tests:
+    
+    def report_compression(self):
+        Compression(PATH,PATHW).run()
+    
+    def report_unfinished(self):
+        f = '[CompressMedia] tests.Tests.report_unfinished'
+        icompress = Compression(PATH,PATHW)
+        icompress.check()
+        icompress.get_files()
+        res = icompress.get_unfinished()
+        if res:
+            mes = []
+            unfinished, size = res[0], res[1]
+            size = sh.com.get_human_size(size,True)
+            sub = _('{} files to process, {} in total')
+            sub = sub.format(len(unfinished),size)
+            mes.append(sub)
+            mes.append('')
+            sub = _('Remaining files:')
+            mes.append(sub)
+            sub = '\n'.join(unfinished)
+            mes.append(sub)
+            mes = '\n'.join(mes)
+            sh.objs.get_mes(f,mes).show_info()
+        else:
+            sh.com.rep_empty(f)
+
 
 
 class File:
@@ -18,6 +52,7 @@ class File:
         self.compression = ''
 
 
+
 class Compression:
     
     def __init__(self,path,pathw):
@@ -25,6 +60,19 @@ class Compression:
         self.path = path
         self.pathw = pathw
         self.Success = True
+    
+    def get_unfinished(self):
+        f = '[CompressMedia] tests.Compression.get_unfinished'
+        if self.Success:
+            unfinished = []
+            size = 0
+            for ifile in self.ifiles:
+                if not os.path.exists(ifile.filew):
+                    unfinished.append(ifile.filename)
+                    size += ifile.old_size
+            return(unfinished,size)
+        else:
+            sh.com.cancel(f)
     
     def sort(self):
         f = '[CompressMedia] tests.Compression.sort'
@@ -118,6 +166,5 @@ class Compression:
         
 
 if __name__ == '__main__':
-    path = '/media/WD/MY_PHOTOS/Смартфон'
-    pathw = '/home/pete/tmp/Смартфон (конвертировано)'
-    Compression(path,pathw).run()
+    #Tests().report_compression()
+    Tests().report_unfinished()
