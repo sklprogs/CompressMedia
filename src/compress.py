@@ -11,6 +11,8 @@ from skl_shared.localize import _
 
 
 ICON = sh.objs.get_pdir().add('..','resources','CompressMedia.gif')
+PATH = '/media/WD/MY_PHOTOS/Смартфон'
+PATHW = '/home/pete/tmp/Смартфон (конвертировано)'
 
 
 class File:
@@ -279,9 +281,7 @@ objs = Objects()
 if __name__ == '__main__':
     f = '__main__'
     sh.com.start()
-    path = '/media/WD/MY_PHOTOS/Смартфон'
-    pathw = '/home/pete/tmp/Смартфон (конвертировано)'
-    Converter(path,pathw).run()
+    Converter(PATH,PATHW).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()

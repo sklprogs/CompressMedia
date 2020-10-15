@@ -7,8 +7,7 @@ import copy
 import skl_shared.shared as sh
 from skl_shared.localize import _
 
-PATH = '/media/WD/MY_PHOTOS/Смартфон'
-PATHW = '/home/pete/tmp/Смартфон (конвертировано)'
+from compress import PATH, PATHW
 
 
 class Tests:
@@ -166,5 +165,5 @@ class Compression:
         
 
 if __name__ == '__main__':
-    #Tests().report_compression()
-    Tests().report_unfinished()
+    Tests().report_compression()
+    #Tests().report_unfinished()
