@@ -50,7 +50,7 @@ class Commands(cm.Converter):
                     mes = mes + '\n' + '\n'.join(failed)
                     sh.objs.get_mes(f,mes).show_warning()
                 else:
-                    mes = _('Operation was a success. Processed files: {}.')
+                    mes = _('Operation was a success.\nProcessed files: {}.')
                     mes = mes.format(len(self.ifiles))
                     sh.objs.get_mes(f,mes).show_info()
             else:
