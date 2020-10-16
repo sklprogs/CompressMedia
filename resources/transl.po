@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CompressMedia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-15 22:27+0300\n"
-"PO-Revision-Date: 2020-10-15 22:27+0300\n"
+"POT-Creation-Date: 2020-10-15 22:30+0300\n"
+"PO-Revision-Date: 2020-10-15 22:30+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -19,43 +19,51 @@ msgstr ""
 "X-Poedit-SearchPath-0: skl_shared/src\n"
 "X-Poedit-SearchPath-1: CompressMedia/src\n"
 
-#: CompressMedia/src/compress.py:43
+#: CompressMedia/src/compress.py:14
+msgid "Smartphone"
+msgstr "Смартфон"
+
+#: CompressMedia/src/compress.py:15
+msgid "Smartphone (converted)"
+msgstr "Смартфон (конвертировано)"
+
+#: CompressMedia/src/compress.py:41
 msgid "Conversion progress"
 msgstr "Ход преобразования"
 
-#: CompressMedia/src/compress.py:72
+#: CompressMedia/src/compress.py:70
 msgid "Files in total: {}"
 msgstr "Всего файлов: {}"
 
-#: CompressMedia/src/compress.py:74
+#: CompressMedia/src/compress.py:72
 msgid "Skipped files: {}"
 msgstr "Пропущено файлов: {}"
 
-#: CompressMedia/src/compress.py:76
+#: CompressMedia/src/compress.py:74
 msgid "Failed files: {}"
 msgstr "Файлов, обработанных с ошибкой: {}"
 
-#: CompressMedia/src/compress.py:88
+#: CompressMedia/src/compress.py:86
 msgid "Processed data: {}"
 msgstr "Обработанных данных: {}"
 
-#: CompressMedia/src/compress.py:90
+#: CompressMedia/src/compress.py:88
 msgid "Converted data: {}"
 msgstr "Преобразованных данных: {}"
 
-#: CompressMedia/src/compress.py:92
+#: CompressMedia/src/compress.py:90
 msgid "Compression: {} ({}%)"
 msgstr "Сжатие: {} ({}%)"
 
-#: CompressMedia/src/compress.py:95
+#: CompressMedia/src/compress.py:93
 msgid "The operation has taken {}"
 msgstr "Операция завершена за {}"
 
-#: CompressMedia/src/compress.py:119
+#: CompressMedia/src/compress.py:117
 msgid "Process \"{}\" ({}/{})"
 msgstr "Обработка \"{}\" ({}/{})"
 
-#: CompressMedia/src/compress.py:167 skl_shared/src/logic.py:2981
+#: CompressMedia/src/compress.py:165 skl_shared/src/logic.py:2981
 #: skl_shared/src/logic.py:3085 skl_shared/src/shared.py:2343
 msgid ""
 "Third-party module has failed!\n"
@@ -66,11 +74,11 @@ msgstr ""
 "\n"
 "Детали: {}"
 
-#: CompressMedia/src/compress.py:243
+#: CompressMedia/src/compress.py:241
 msgid "Empty output is not allowed!"
 msgstr "Пустые выходные данные не допускаются!"
 
-#: CompressMedia/src/compress.py:287 CompressMedia/src/utils.py:101
+#: CompressMedia/src/compress.py:285 CompressMedia/src/utils.py:101
 msgid "Goodbye!"
 msgstr "До свидания!"
 
@@ -113,7 +121,6 @@ msgstr ""
 "Настоятельно рекомендуется сперва создать резервную копию."
 
 #: CompressMedia/src/utils.py:29
-#| msgid "Process \"{}\" ({}/{})"
 msgid "Move \"{}\" ({}/{})"
 msgstr "Перемещение \"{}\" ({}/{})"
 

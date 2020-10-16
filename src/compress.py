@@ -11,10 +11,9 @@ from skl_shared.localize import _
 
 
 ICON = sh.objs.get_pdir().add('..','resources','CompressMedia.gif')
-#PATH = sh.objs.get_home().add('tmp','Смартфон')
-#PATHW = sh.objs.home.add('tmp','Смартфон (конвертировано)')
-PATH = '/media/WD/MY_PHOTOS/Смартфон'
-PATHW = '/media/WD/MY_PHOTOS/Смартфон (конвертировано)'
+ihome = sh.Home()
+PATH = ihome.add('tmp',_('Smartphone'))
+PATHW = ihome.add('tmp',_('Smartphone (converted)'))
 
 
 class File:
