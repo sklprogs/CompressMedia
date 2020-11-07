@@ -114,7 +114,7 @@ class Compression:
                       ,_('NEW SIZE'),_('COMPRESSION')
                       )
             mes = sh.FastTable (iterable = iterable
-                               ,headers  = headers
+                               ,headers = headers
                                ).run()
             sh.com.run_fast_debug(f,mes)
         else:

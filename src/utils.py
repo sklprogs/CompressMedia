@@ -84,7 +84,7 @@ class Objects:
     def get_progress(self):
         if self.progress is None:
             self.progress = sh.ProgressBar (title = _('Operation progress')
-                                           ,icon  = cm.ICON
+                                           ,icon = cm.ICON
                                            )
             self.progress.add()
         return self.progress

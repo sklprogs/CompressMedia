@@ -40,7 +40,7 @@ class Objects:
     def get_progress(self):
         if self.progress is None:
             self.progress = sh.ProgressBar (title = _('Conversion progress')
-                                           ,icon  = ICON
+                                           ,icon = ICON
                                            )
             self.progress.add()
         return self.progress
@@ -155,7 +155,7 @@ class Converter:
     
     def _convert_video(self,file,filew):
         try:
-            ffmpy.FFmpeg (inputs  = {file:None}
+            ffmpy.FFmpeg (inputs = {file:None}
                          ,outputs = {filew:None}
                          ).run()
             return True
@@ -170,9 +170,9 @@ class Converter:
     def _convert_photo(self,file,filew):
         try:
             iimage = Image.open(file)
-            iimage.save (fp       = filew
+            iimage.save (fp = filew
                         ,optimize = self.Optimize
-                        ,quality  = self.image_quality
+                        ,quality = self.image_quality
                         )
             iimage.close()
             return True
