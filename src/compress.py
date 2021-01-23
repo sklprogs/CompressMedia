@@ -14,6 +14,8 @@ ICON = sh.objs.get_pdir().add('..','resources','CompressMedia.gif')
 ihome = sh.Home()
 PATH = ihome.add('tmp',_('Smartphone'))
 PATHW = ihome.add('tmp',_('Smartphone (converted)'))
+IMAGE_TYPES = ('.jpg','.jpeg')
+VIDEO_TYPES = ('.mp4','.3gp','.avi')
 
 
 class File:
@@ -189,8 +191,9 @@ class Converter:
                                                 ,ifile.relpath
                                                 )
                 elif ifile.Video:
+                    # We explicitly convert all videos to MP4
                     ifile.target = os.path.join (ifile.targetdir
-                                                ,ifile.filename+'.mp4'
+                                                ,ifile.filename + '.mp4'
                                                 )
         else:
             sh.com.cancel(f)
@@ -220,41 +223,59 @@ class Converter:
             self.Success = False
             sh.com.rep_empty(f)
     
-    def get_date(self):
-        f = '[CompressMedia] compress.Converter.get_date'
+    def _get_date_android(self,relpath):
+        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*',relpath)
+        if match:
+            return '{}-{}-{}'.format (match.group(2),match.group(3)
+                                     ,match.group(4)
+                                     )
+    
+    def _get_date_winphone(self,relpath):
+        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*',relpath)
+        if match:
+            return '{}-{}-{}'.format (match.group(1),match.group(2)
+                                     ,match.group(3)
+                                     )
+    
+    def set_date(self):
+        f = '[CompressMedia] compress.Converter.set_date'
         if self.Success:
-            pattern = '(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*'
             for ifile in self.ifiles:
-                match = re.match(pattern,ifile.relpath)
-                if match:
-                    if match.group(1) == 'IMG':
-                        ifile.Image = True
-                    else:
-                        ifile.Video = True
-                    ifile.date = '{}-{}-{}'.format (match.group(2)
-                                                   ,match.group(3)
-                                                   ,match.group(4)
-                                                   )
+                date = self._get_date_android(ifile.relpath)
+                if not date:
+                    date = self._get_date_winphone(ifile.relpath)
+                if date:
+                    ifile.date = date
                 else:
                     ifile.Skipped = True
-            if not self.get_ready():
-                self.Success = False
-                mes = _('Empty output is not allowed!')
-                sh.objs.get_mes(f,mes,True).show_warning()
         else:
             sh.com.cancel(f)
+    
+    def get_useful(self):
+        f = '[CompressMedia] compress.Converter.get_useful'
+        if not self.get_ready():
+            self.Success = False
+            mes = _('Empty output is not allowed!')
+            sh.objs.get_mes(f,mes,True).show_warning()
     
     def get_files(self):
         f = '[CompressMedia] compress.Converter.get_files'
         if self.Success:
-            files = self.idir.get_files()
-            relfiles = self.idir.get_rel_files()
-            if files and relfiles:
+            files = self.idir.get_subfiles()
+            if files:
                 for i in range(len(files)):
                     ifile = File()
                     ifile.source = files[i]
-                    ifile.relpath = relfiles[i]
-                    ifile.filename = sh.Path(ifile.relpath).get_filename()
+                    ipath = sh.Path(files[i])
+                    ifile.relpath = ipath.get_basename()
+                    ifile.filename = ipath.get_filename()
+                    ext_low = ipath.get_ext_low()
+                    if ext_low in IMAGE_TYPES:
+                        ifile.Image = True
+                    elif ext_low in VIDEO_TYPES:
+                        ifile.Video = True
+                    else:
+                        ifile.Skipped = True
                     self.ifiles.append(ifile)
             else:
                 self.Success = False
@@ -268,7 +289,8 @@ class Converter:
         self.itimer.start()
         self.check()
         self.get_files()
-        self.get_date()
+        self.set_date()
+        self.get_useful()
         self.set_target()
         self.skip_existing()
         self.create_folders()
@@ -280,7 +302,7 @@ objs = Objects()
 
 
 if __name__ == '__main__':
-    f = '__main__'
+    f = '[CompressMedia] compress.__main__'
     sh.com.start()
     Converter(PATH,PATHW).run()
     mes = _('Goodbye!')
