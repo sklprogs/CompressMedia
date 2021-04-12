@@ -223,11 +223,18 @@ class Converter:
             self.Success = False
             sh.com.rep_empty(f)
     
-    def _get_date_android(self,relpath):
+    def _get_date_android6(self,relpath):
         match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*',relpath)
         if match:
             return '{}-{}-{}'.format (match.group(2),match.group(3)
                                      ,match.group(4)
+                                     )
+    
+    def _get_date_android10(self,relpath):
+        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*',relpath)
+        if match:
+            return '{}-{}-{}'.format (match.group(1),match.group(2)
+                                     ,match.group(3)
                                      )
     
     def _get_date_winphone(self,relpath):
@@ -241,7 +248,9 @@ class Converter:
         f = '[CompressMedia] compress.Converter.set_date'
         if self.Success:
             for ifile in self.ifiles:
-                date = self._get_date_android(ifile.relpath)
+                date = self._get_date_android6(ifile.relpath)
+                if not date:
+                    date = self._get_date_android10(ifile.relpath)
                 if not date:
                     date = self._get_date_winphone(ifile.relpath)
                 if date:
