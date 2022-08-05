@@ -156,6 +156,7 @@ class Converter:
         return(old_size,new_size)
     
     def _convert_video(self,file,filew):
+        f = '[CompressMedia] compress.Converter._convert_video'
         try:
             ffmpy.FFmpeg (inputs = {file:None}
                          ,outputs = {filew:None}
@@ -170,6 +171,7 @@ class Converter:
         sh.objs.get_mes(f,mes,True).show_error()
     
     def _convert_photo(self,file,filew):
+        f = '[CompressMedia] compress.Converter._convert_photo'
         try:
             iimage = Image.open(file)
             iimage.save (fp = filew
