@@ -9,7 +9,55 @@ from skl_shared.localize import _
 import compress as cm
 
 
-class Commands(cm.Converter):
+class Diff:
+    
+    def __init__(self):
+        self.Success = True
+        self.path1 = cm.PATH
+        self.path2 = cm.PATHW
+        self.lst1 = []
+        self.lst2 = []
+    
+    def check(self):
+        self.idir1 = sh.Directory(self.path1)
+        self.idir2 = sh.Directory(self.path2)
+        self.Success = self.idir1.Success and self.idir2.Success
+    
+    def set_lists(self):
+        f = '[CompressMedia] utils.Diff.set_lists'
+        if not self.Success:
+            sh.com.cancel(f)
+            return
+        ''' Converted files are nested, so we should not use 'get_rel_files'.
+            Original files are not nested, but we stay on a safe side.
+        '''
+        self.lst1 = self.idir1.get_subfiles()
+        self.lst2 = self.idir2.get_subfiles()
+        self.lst1 = [sh.Path(file).get_basename() for file in self.lst1]
+        self.lst2 = [sh.Path(file).get_basename() for file in self.lst2]
+    
+    def compare(self):
+        f = '[CompressMedia] utils.Diff.compare'
+        if not self.Success:
+            sh.com.cancel(f)
+            return
+        # Actually, the second list may be empty
+        if not self.lst1:
+            self.Success = False
+            sh.com.rep_empty(f)
+            return
+        diff = sh.List(self.lst1,self.lst2).get_diff_any()
+        mes = _('Non-converted files: {}').format('; '.join(diff))
+        sh.objs.get_mes(f,mes).show_info()
+    
+    def run(self):
+        self.check()
+        self.set_lists()
+        self.compare()
+
+
+
+class Converter(cm.Converter):
     
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
@@ -19,7 +67,7 @@ class Commands(cm.Converter):
         self.set_target()
     
     def replace_original(self):
-        f = '[CompressMedia] utils.Commands.replace_original'
+        f = '[CompressMedia] utils.Converter.replace_original'
         if self.Success:
             failed = []
             mes = _('Do you REALLY want to replace your original files with converted ones?\n\nIt is highly recommended to create a backup first.')
@@ -90,14 +138,14 @@ class Objects:
         return self.progress
 
 
-com = Commands(cm.PATH,cm.PATHW)
 objs = Objects()
 
 
 if __name__ == '__main__':
     f = '[CompressMedia] utils.__main__'
     sh.com.start()
-    com.replace_original()
+    #Converter(cm.PATH,cm.PATHW).replace_original()
+    Diff().run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f,mes,True).show_debug()
     sh.com.end()
