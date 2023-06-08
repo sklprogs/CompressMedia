@@ -51,13 +51,14 @@ class Objects:
 
 class Converter:
     
-    def __init__(self, path, pathw, image_quality=65, Optimize=True):
+    def __init__(self, path, pathw, image_quality=65, Optimize=True, ConvertVideo=True):
         self.ifiles = []
         self.path = path
         self.pathw = pathw
         self.Success = True
         self.image_quality = image_quality
         self.Optimize = Optimize
+        self.ConvertVideo = ConvertVideo
     
     def get_ready(self):
         return [ifile for ifile in self.ifiles \
@@ -121,18 +122,17 @@ class Converter:
             if not ifile.Skipped and not ifile.Failed:
                 mes = _('Process "{}" ({}/{})')
                 mes = mes.format(ifile.relpath, cur + 1, total)
-                sh.objs.get_mes(f,mes,True).show_info()
+                sh.objs.get_mes(f, mes, True).show_info()
                 objs.progress.set_text(mes)
-                objs.progress.update(cur,total)
+                objs.progress.update(cur, total)
                 if ifile.Image:
-                    if not self._convert_photo (ifile.source
-                                               ,ifile.target
-                                               ):
+                    if not self._convert_photo(ifile.source, ifile.target):
                         ifile.Failed = True
                 elif ifile.Video:
-                    if not self._convert_video (ifile.source
-                                               ,ifile.target
-                                               ):
+                    if self.ConvertVideo:
+                        if not self._convert_video(ifile.source, ifile.target):
+                            ifile.Failed = True
+                    elif not sh.File(ifile.source, ifile.target).copy():
                         ifile.Failed = True
                 cur += 1
         objs.progress.close()
@@ -152,14 +152,12 @@ class Converter:
         for ifile in ifiles:
             old_size += sh.File(ifile.source).get_size()
             new_size += sh.File(ifile.target).get_size()
-        return(old_size,new_size)
+        return(old_size, new_size)
     
     def _convert_video(self, file, filew):
         f = '[CompressMedia] compress.Converter._convert_video'
         try:
-            ffmpy.FFmpeg (inputs = {file:None}
-                         ,outputs = {filew:None}
-                         ).run()
+            ffmpy.FFmpeg(inputs={file: None}, outputs={filew: None}).run()
             return True
         except Exception as e:
             self.rep_failed(f, e)
@@ -190,9 +188,7 @@ class Converter:
         for ifile in self.ifiles:
             ifile.targetdir = os.path.join(self.pathw, ifile.date)
             if ifile.Image:
-                ifile.target = os.path.join (ifile.targetdir
-                                            ,ifile.relpath
-                                            )
+                ifile.target = os.path.join(ifile.targetdir, ifile.relpath)
             elif ifile.Video:
                 # We explicitly convert all videos to MP4
                 ifile.target = os.path.join (ifile.targetdir
@@ -226,9 +222,7 @@ class Converter:
     def _get_date_android6(self,relpath):
         match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
         if match:
-            return '{}-{}-{}'.format (match.group(2),match.group(3)
-                                     ,match.group(4)
-                                     )
+            return f'{match.group(2)}-{match.group(3)}-{match.group(4)}'
     
     def _get_date_android10(self, relpath):
         match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
@@ -309,7 +303,7 @@ objs = Objects()
 if __name__ == '__main__':
     f = '[CompressMedia] compress.__main__'
     sh.com.start()
-    Converter(PATH, PATHW).run()
+    Converter(PATH, PATHW, ConvertVideo=True).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f, mes, True).show_debug()
     sh.com.end()
