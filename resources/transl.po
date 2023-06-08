@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: CompressMedia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-05 13:19+0300\n"
-"PO-Revision-Date: 2022-08-05 13:20+0300\n"
+"PO-Revision-Date: 2023-06-08 23:36+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -456,7 +456,7 @@ msgstr "Объект \"{}\" не является файлом!"
 
 #: skl_shared/src/logic.py:2231 skl_shared/src/logic.py:3076
 msgid "Copy \"{}\" to \"{}\""
-msgstr "Нельзя скопировать \"{}\" сам в себя!"
+msgstr "Копирование \"{}\" в \"{}\""
 
 #: skl_shared/src/logic.py:2237
 msgid "Failed to copy file \"{}\" to \"{}\"!"
