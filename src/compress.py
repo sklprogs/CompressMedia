@@ -10,12 +10,12 @@ import skl_shared.shared as sh
 from skl_shared.localize import _
 
 
-ICON = sh.objs.get_pdir().add('..','resources','CompressMedia.gif')
+ICON = sh.objs.get_pdir().add('..', 'resources', 'CompressMedia.gif')
 ihome = sh.Home()
-PATH = ihome.add('tmp',_('Smartphone'))
-PATHW = ihome.add('tmp',_('Smartphone (converted)'))
-IMAGE_TYPES = ('.jpg','.jpeg')
-VIDEO_TYPES = ('.mp4','.3gp','.avi')
+PATH = ihome.add('tmp', _('Smartphone'))
+PATHW = ihome.add('tmp', _('Smartphone (converted)'))
+IMAGE_TYPES = ('.jpg', '.jpeg')
+VIDEO_TYPES = ('.mp4', '.3gp', '.avi')
 
 
 class File:
@@ -51,7 +51,7 @@ class Objects:
 
 class Converter:
     
-    def __init__(self,path,pathw,image_quality=65,Optimize=True):
+    def __init__(self, path, pathw, image_quality=65, Optimize=True):
         self.ifiles = []
         self.path = path
         self.pathw = pathw
@@ -82,23 +82,23 @@ class Converter:
         size_diff = old_size - new_size
         # Avoid ZeroDivisionError
         if old_size:
-            percent = round((100*size_diff)/old_size)
+            percent = round((100 * size_diff) / old_size)
         else:
             percent = 0
-        old_size = sh.com.get_human_size(old_size,True)
-        new_size = sh.com.get_human_size(new_size,True)
-        size_diff = sh.com.get_human_size(size_diff,True)
+        old_size = sh.com.get_human_size(old_size, True)
+        new_size = sh.com.get_human_size(new_size, True)
+        size_diff = sh.com.get_human_size(size_diff, True)
         sub = _('Processed data: {}').format(old_size)
         mes.append(sub)
         sub = _('Converted data: {}').format(new_size)
         mes.append(sub)
-        sub = _('Compression: {} ({}%)').format(size_diff,percent)
+        sub = _('Compression: {} ({}%)').format(size_diff, percent)
         mes.append(sub)
         delta = sh.com.get_human_time(self.itimer.end())
         sub = _('The operation has taken {}').format(delta)
         mes.append(sub)
         mes = '\n'.join(mes)
-        sh.objs.get_mes(f,mes).show_info()
+        sh.objs.get_mes(f, mes).show_info()
     
     def skip_existing(self):
         f = '[CompressMedia] compress.Converter.skip_existing'
@@ -120,7 +120,7 @@ class Converter:
         for ifile in self.ifiles:
             if not ifile.Skipped and not ifile.Failed:
                 mes = _('Process "{}" ({}/{})')
-                mes = mes.format(ifile.relpath,cur+1,total)
+                mes = mes.format(ifile.relpath, cur + 1, total)
                 sh.objs.get_mes(f,mes,True).show_info()
                 objs.progress.set_text(mes)
                 objs.progress.update(cur,total)
@@ -141,7 +141,7 @@ class Converter:
         f = '[CompressMedia] compress.Converter.get_size'
         if not self.Success:
             sh.com.cancel(f)
-            return(0,0)
+            return(0, 0)
         ''' We should only consider successfully processed files, since taking
             into account failed or skipped files can give a user a false
             impression that a lot of space can be freed.
@@ -154,7 +154,7 @@ class Converter:
             new_size += sh.File(ifile.target).get_size()
         return(old_size,new_size)
     
-    def _convert_video(self,file,filew):
+    def _convert_video(self, file, filew):
         f = '[CompressMedia] compress.Converter._convert_video'
         try:
             ffmpy.FFmpeg (inputs = {file:None}
@@ -162,14 +162,14 @@ class Converter:
                          ).run()
             return True
         except Exception as e:
-            self.rep_failed(f,e)
+            self.rep_failed(f, e)
     
-    def rep_failed(self,f,e):
+    def rep_failed(self, f, e):
         mes = _('Third-party module has failed!\n\nDetails: {}')
         mes = mes.format(e)
-        sh.objs.get_mes(f,mes,True).show_error()
+        sh.objs.get_mes(f, mes, True).show_error()
     
-    def _convert_photo(self,file,filew):
+    def _convert_photo(self, file, filew):
         f = '[CompressMedia] compress.Converter._convert_photo'
         try:
             iimage = Image.open(file)
@@ -180,7 +180,7 @@ class Converter:
             iimage.close()
             return True
         except Exception as e:
-            self.rep_failed(f,e)
+            self.rep_failed(f, e)
     
     def set_target(self):
         f = '[CompressMedia] compress.Converter.set_target'
@@ -188,7 +188,7 @@ class Converter:
             sh.com.cancel(f)
             return
         for ifile in self.ifiles:
-            ifile.targetdir = os.path.join(self.pathw,ifile.date)
+            ifile.targetdir = os.path.join(self.pathw, ifile.date)
             if ifile.Image:
                 ifile.target = os.path.join (ifile.targetdir
                                             ,ifile.relpath
@@ -224,25 +224,21 @@ class Converter:
             self.idirw = sh.Directory(self.pathw)
     
     def _get_date_android6(self,relpath):
-        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*',relpath)
+        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
         if match:
             return '{}-{}-{}'.format (match.group(2),match.group(3)
                                      ,match.group(4)
                                      )
     
-    def _get_date_android10(self,relpath):
-        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*',relpath)
+    def _get_date_android10(self, relpath):
+        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
         if match:
-            return '{}-{}-{}'.format (match.group(1),match.group(2)
-                                     ,match.group(3)
-                                     )
+            return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
-    def _get_date_winphone(self,relpath):
-        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*',relpath)
+    def _get_date_winphone(self, relpath):
+        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*', relpath)
         if match:
-            return '{}-{}-{}'.format (match.group(1),match.group(2)
-                                     ,match.group(3)
-                                     )
+            return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
     def set_date(self):
         f = '[CompressMedia] compress.Converter.set_date'
@@ -313,7 +309,7 @@ objs = Objects()
 if __name__ == '__main__':
     f = '[CompressMedia] compress.__main__'
     sh.com.start()
-    Converter(PATH,PATHW).run()
+    Converter(PATH, PATHW).run()
     mes = _('Goodbye!')
-    sh.objs.get_mes(f,mes,True).show_debug()
+    sh.objs.get_mes(f, mes, True).show_debug()
     sh.com.end()

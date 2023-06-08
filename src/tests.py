@@ -13,11 +13,11 @@ from compress import PATH, PATHW
 class Tests:
     
     def report_compression(self):
-        Compression(PATH,PATHW).run()
+        Compression(PATH, PATHW).run()
     
     def report_unfinished(self):
         f = '[CompressMedia] tests.Tests.report_unfinished'
-        icompress = Compression(PATH,PATHW)
+        icompress = Compression(PATH, PATHW)
         icompress.check()
         icompress.get_files()
         res = icompress.get_unfinished()
@@ -26,9 +26,9 @@ class Tests:
             return
         mes = []
         unfinished, size = res[0], res[1]
-        size = sh.com.get_human_size(size,True)
+        size = sh.com.get_human_size(size, True)
         sub = _('{} files to process, {} in total')
-        sub = sub.format(len(unfinished),size)
+        sub = sub.format(len(unfinished), size)
         mes.append(sub)
         mes.append('')
         sub = _('Remaining files:')
@@ -54,7 +54,7 @@ class File:
 
 class Compression:
     
-    def __init__(self,path,pathw):
+    def __init__(self, path, pathw):
         self.ifiles = []
         self.path = path
         self.pathw = pathw
@@ -106,19 +106,17 @@ class Compression:
         new_sizes = [sh.com.get_human_size(ifile.new_size) \
                      for ifile in self.ifiles
                     ]
-        compression = ['{}%'.format(ifile.compression) \
-                       for ifile in self.ifiles
-                      ]
+        compression = [f'{ifile.compression}%' for ifile in self.ifiles]
         files = [ifile.file for ifile in self.ifiles]
         filesw = [ifile.filew for ifile in self.ifiles]
-        iterable = [nos,files,filesw,new_sizes,compression]
-        headers = (_('#'),_('INPUT FILE'),_('OUTPUT FILE')
-                  ,_('NEW SIZE'),_('COMPRESSION')
+        iterable = [nos, files, filesw, new_sizes, compression]
+        headers = (_('#'), _('INPUT FILE'), _('OUTPUT FILE'), _('NEW SIZE')
+                  ,_('COMPRESSION')
                   )
         mes = sh.FastTable (iterable = iterable
                            ,headers = headers
                            ).run()
-        sh.com.run_fast_debug(f,mes)
+        sh.com.run_fast_debug(f, mes)
     
     def run(self):
         self.check()
