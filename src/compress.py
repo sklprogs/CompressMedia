@@ -303,7 +303,7 @@ objs = Objects()
 if __name__ == '__main__':
     f = '[CompressMedia] compress.__main__'
     sh.com.start()
-    Converter(PATH, PATHW, ConvertVideo=True).run()
+    Converter(PATH, PATHW, ConvertVideo=False).run()
     mes = _('Goodbye!')
     sh.objs.get_mes(f, mes, True).show_debug()
     sh.com.end()
