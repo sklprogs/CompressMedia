@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=CompressMedia
+Icon=compress_media
+Exec=compress_media
+Type=Application
+Categories=Graphics;
