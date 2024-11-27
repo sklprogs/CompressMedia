@@ -7,7 +7,7 @@ import copy
 import skl_shared.shared as sh
 from skl_shared.localize import _
 
-from compress import PATH, PATHW
+from compress_media import PATH, PATHW
 
 
 class Tests:

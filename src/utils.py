@@ -6,7 +6,7 @@ import os
 import skl_shared.shared as sh
 from skl_shared.localize import _
 
-import compress as cm
+import compress_media as cm
 
 
 class Diff:
