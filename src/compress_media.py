@@ -6,14 +6,21 @@ import re
 import ffmpy
 from PIL import Image
 
-import skl_shared.shared as sh
 from skl_shared.localize import _
+from skl_shared.message.controller import Message, rep
+from skl_shared.graphics.root.controller import ROOT
+from skl_shared.graphics.icon.controller import ICON
+from skl_shared.graphics.progress_bar.controller import PROGRESS
+from skl_shared.paths import File as shFile, Directory, Home, PDIR, Path
+from skl_shared.time import Timer
+from skl_shared.logic import com
 
 
-ICON = sh.objs.get_pdir().add('..', 'resources', 'CompressMedia.gif')
-ihome = sh.Home()
-PATH = ihome.add('tmp', _('Smartphone'))
-PATHW = ihome.add('tmp', _('Smartphone (converted)'))
+ICON.set(PDIR.add('..', 'resources', 'CompressMedia.png'))
+ROOT.set_icon()
+ihome = Home('CompressMedia')
+PATH = ihome.add_share(_('not processed'))
+PATHW = ihome.add_share(_('processed'))
 IMAGE_TYPES = ('.jpg', '.jpeg')
 VIDEO_TYPES = ('.mp4', '.3gp', '.avi')
 
@@ -34,21 +41,6 @@ class File:
 
 
 
-class Objects:
-    
-    def __init__(self):
-        self.progress = None
-    
-    def get_progress(self):
-        if self.progress is None:
-            self.progress = sh.ProgressBar (title = _('Conversion progress')
-                                           ,icon = ICON
-                                           )
-            self.progress.add()
-        return self.progress
-
-
-
 class Converter:
     
     def __init__(self, path, pathw, image_quality=65, Optimize=True, ConvertVideo=True):
@@ -62,13 +54,12 @@ class Converter:
     
     def get_ready(self):
         return [ifile for ifile in self.ifiles \
-                if not ifile.Skipped and not ifile.Failed
-               ]
+               if not ifile.Skipped and not ifile.Failed]
     
     def report(self):
-        f = '[CompressMedia] compress.Converter.report'
+        f = '[CompressMedia] compress_media.Converter.report'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         mes = []
         skipped = [ifile for ifile in self.ifiles if ifile.Skipped]
@@ -86,61 +77,61 @@ class Converter:
             percent = round((100 * size_diff) / old_size)
         else:
             percent = 0
-        old_size = sh.com.get_human_size(old_size, True)
-        new_size = sh.com.get_human_size(new_size, True)
-        size_diff = sh.com.get_human_size(size_diff, True)
+        old_size = com.get_human_size(old_size, True)
+        new_size = com.get_human_size(new_size, True)
+        size_diff = com.get_human_size(size_diff, True)
         sub = _('Processed data: {}').format(old_size)
         mes.append(sub)
         sub = _('Converted data: {}').format(new_size)
         mes.append(sub)
         sub = _('Compression: {} ({}%)').format(size_diff, percent)
         mes.append(sub)
-        delta = sh.com.get_human_time(self.itimer.end())
+        delta = com.get_human_time(self.itimer.end())
         sub = _('The operation has taken {}').format(delta)
         mes.append(sub)
         mes = '\n'.join(mes)
-        sh.objs.get_mes(f, mes).show_info()
+        Message(f, mes, True).show_info()
     
     def skip_existing(self):
-        f = '[CompressMedia] compress.Converter.skip_existing'
+        f = '[CompressMedia] compress_media.Converter.skip_existing'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         for ifile in self.ifiles:
             if os.path.exists(ifile.target):
                 ifile.Skipped = True
     
     def convert(self):
-        f = '[CompressMedia] compress.Converter.convert'
+        f = '[CompressMedia] compress_media.Converter.convert'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
-        objs.get_progress().show()
-        cur = 0
-        total = len(self.get_ready())
+        PROGRESS.set_title('Convert Media')
+        PROGRESS.set_value(0)
+        PROGRESS.set_max(len(self.get_ready()))
+        PROGRESS.show()
         for ifile in self.ifiles:
-            if not ifile.Skipped and not ifile.Failed:
-                mes = _('Process "{}" ({}/{})')
-                mes = mes.format(ifile.relpath, cur + 1, total)
-                sh.objs.get_mes(f, mes, True).show_info()
-                objs.progress.set_text(mes)
-                objs.progress.update(cur, total)
-                if ifile.Image:
-                    if not self._convert_photo(ifile.source, ifile.target):
+            if ifile.Skipped or ifile.Failed:
+                continue
+            PROGRESS.update()
+            mes = _('Process "{}" ({}/{})').format(ifile.relpath, PROGRESS.get_value() + 1, PROGRESS.get_max())
+            PROGRESS.set_info(mes)
+            if ifile.Image:
+                if not self._convert_photo(ifile.source, ifile.target):
+                    ifile.Failed = True
+            elif ifile.Video:
+                if self.ConvertVideo:
+                    if not self._convert_video(ifile.source, ifile.target):
                         ifile.Failed = True
-                elif ifile.Video:
-                    if self.ConvertVideo:
-                        if not self._convert_video(ifile.source, ifile.target):
-                            ifile.Failed = True
-                    elif not sh.File(ifile.source, ifile.target).copy():
-                        ifile.Failed = True
-                cur += 1
-        objs.progress.close()
+                elif not shFile(ifile.source, ifile.target).copy():
+                    ifile.Failed = True
+            PROGRESS.inc()
+        PROGRESS.close()
     
     def get_size(self):
-        f = '[CompressMedia] compress.Converter.get_size'
+        f = '[CompressMedia] compress_media.Converter.get_size'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return(0, 0)
         ''' We should only consider successfully processed files, since taking
             into account failed or skipped files can give a user a false
@@ -150,12 +141,12 @@ class Converter:
         new_size = 0
         ifiles = self.get_ready()
         for ifile in ifiles:
-            old_size += sh.File(ifile.source).get_size()
-            new_size += sh.File(ifile.target).get_size()
+            old_size += shFile(ifile.source).get_size()
+            new_size += shFile(ifile.target).get_size()
         return(old_size, new_size)
     
     def _convert_video(self, file, filew):
-        f = '[CompressMedia] compress.Converter._convert_video'
+        f = '[CompressMedia] compress_media.Converter._convert_video'
         try:
             ffmpy.FFmpeg(inputs={file: None}, outputs={filew: None}).run()
             return True
@@ -163,27 +154,24 @@ class Converter:
             self.rep_failed(f, e)
     
     def rep_failed(self, f, e):
-        mes = _('Third-party module has failed!\n\nDetails: {}')
-        mes = mes.format(e)
-        sh.objs.get_mes(f, mes, True).show_error()
+        mes = _('Third-party module has failed!\n\nDetails: {}').format(e)
+        Message(f, mes).show_error()
     
     def _convert_photo(self, file, filew):
-        f = '[CompressMedia] compress.Converter._convert_photo'
+        f = '[CompressMedia] compress_media.Converter._convert_photo'
         try:
             iimage = Image.open(file)
-            iimage.save (fp = filew
-                        ,optimize = self.Optimize
-                        ,quality = self.image_quality
-                        )
+            iimage.save(fp = filew, optimize = self.Optimize
+                       ,quality = self.image_quality)
             iimage.close()
             return True
         except Exception as e:
             self.rep_failed(f, e)
     
     def set_target(self):
-        f = '[CompressMedia] compress.Converter.set_target'
+        f = '[CompressMedia] compress_media.Converter.set_target'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         for ifile in self.ifiles:
             ifile.targetdir = os.path.join(self.pathw, ifile.date)
@@ -191,33 +179,33 @@ class Converter:
                 ifile.target = os.path.join(ifile.targetdir, ifile.relpath)
             elif ifile.Video:
                 # We explicitly convert all videos to MP4
-                ifile.target = os.path.join (ifile.targetdir
-                                            ,ifile.filename + '.mp4'
-                                            )
+                ifile.target = os.path.join(ifile.targetdir
+                                           ,ifile.filename + '.mp4')
     
     def create_folders(self):
-        f = '[CompressMedia] compress.Converter.create_folders'
+        f = '[CompressMedia] compress_media.Converter.create_folders'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         folders = [ifile.targetdir for ifile in self.ifiles]
         folders = sorted(set(folders))
         for folder in folders:
-            if not sh.Path(folder).create():
-                for ifile in self.ifiles:
-                    if ifile.targetdir == folder:
-                        ifile.Failed = True
+            if Path(folder).create():
+                continue
+            for ifile in self.ifiles:
+                if ifile.targetdir == folder:
+                    ifile.Failed = True
     
     def check(self):
-        f = '[CompressMedia] compress.Converter.check'
+        f = '[CompressMedia] compress_media.Converter.check'
         if not self.path or not self.pathw:
             self.Success = False
-            sh.com.rep_empty(f)
+            rep.empty(f)
             return
-        self.idir = sh.Directory(self.path)
-        self.Success = self.idir.Success and sh.Path(self.pathw).create()
+        self.idir = Directory(self.path)
+        self.Success = self.idir.Success and Path(self.pathw).create()
         if self.Success:
-            self.idirw = sh.Directory(self.pathw)
+            self.idirw = Directory(self.pathw)
     
     def _get_date_android6(self,relpath):
         match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
@@ -235,9 +223,9 @@ class Converter:
             return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
     def set_date(self):
-        f = '[CompressMedia] compress.Converter.set_date'
+        f = '[CompressMedia] compress_media.Converter.set_date'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         for ifile in self.ifiles:
             date = self._get_date_android6(ifile.relpath)
@@ -251,26 +239,26 @@ class Converter:
                 ifile.Skipped = True
     
     def get_useful(self):
-        f = '[CompressMedia] compress.Converter.get_useful'
+        f = '[CompressMedia] compress_media.Converter.get_useful'
         if not self.get_ready():
             self.Success = False
             mes = _('Empty output is not allowed!')
-            sh.objs.get_mes(f,mes,True).show_warning()
+            Message(f, mes).show_warning()
     
     def get_files(self):
-        f = '[CompressMedia] compress.Converter.get_files'
+        f = '[CompressMedia] compress_media.Converter.get_files'
         if not self.Success:
-            sh.com.cancel(f)
+            rep.cancel(f)
             return
         files = self.idir.get_subfiles()
         if not files:
             self.Success = False
-            sh.com.rep_empty(f)
+            rep.empty(f)
             return
         for i in range(len(files)):
             ifile = File()
             ifile.source = files[i]
-            ipath = sh.Path(files[i])
+            ipath = Path(files[i])
             ifile.relpath = ipath.get_basename()
             ifile.filename = ipath.get_filename()
             ext_low = ipath.get_ext_low()
@@ -283,8 +271,8 @@ class Converter:
             self.ifiles.append(ifile)
     
     def run(self):
-        f = '[CompressMedia] compress.Converter.run'
-        self.itimer = sh.Timer(f)
+        f = '[CompressMedia] compress_media.Converter.run'
+        self.itimer = Timer(f)
         self.itimer.start()
         self.check()
         self.get_files()
@@ -297,13 +285,9 @@ class Converter:
         self.report()
 
 
-objs = Objects()
-
-
 if __name__ == '__main__':
-    f = '[CompressMedia] compress.__main__'
-    sh.com.start()
+    f = '[CompressMedia] compress_media.__main__'
     Converter(PATH, PATHW, ConvertVideo=False).run()
     mes = _('Goodbye!')
-    sh.objs.get_mes(f, mes, True).show_debug()
-    sh.com.end()
+    Message(f, mes).show_debug()
+    ROOT.end()
