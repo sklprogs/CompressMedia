@@ -106,7 +106,7 @@ class Converter:
         if not self.Success:
             rep.cancel(f)
             return
-        PROGRESS.set_title('Convert Media')
+        PROGRESS.set_title(_('Convert Media Files'))
         PROGRESS.set_value(0)
         PROGRESS.set_max(len(self.get_ready()))
         PROGRESS.show()

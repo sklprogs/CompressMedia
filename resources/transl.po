@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CompressMedia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 10:45+0300\n"
-"PO-Revision-Date: 2025-07-01 10:47+0300\n"
+"POT-Creation-Date: 2025-07-02 01:23+0300\n"
+"PO-Revision-Date: 2025-07-02 01:24+0300\n"
 "Last-Translator: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language-Team: Peter Sklyar <skl.progs@gmail.com>\n"
 "Language: ru_RU\n"
@@ -55,11 +55,15 @@ msgstr "Сжатие: {} ({}%)"
 msgid "The operation has taken {}"
 msgstr "Операция завершена за {}"
 
-#: CompressMedia/src/compress_media.py:116
+#: CompressMedia/src/compress_media.py:109
+msgid "Convert Media Files"
+msgstr "Конвертация файлов мультимедиа"
+
+#: CompressMedia/src/compress_media.py:117
 msgid "Process \"{}\" ({}/{})"
 msgstr "Обработка \"{}\" ({}/{})"
 
-#: CompressMedia/src/compress_media.py:156
+#: CompressMedia/src/compress_media.py:157
 #: skl_shared/src/graphics/font/controller.py:23
 #: skl_shared/src/message/controller.py:56 skl_shared/src/pretty_html.py:22
 #: skl_shared/src/temp_file.py:18
@@ -72,12 +76,12 @@ msgstr ""
 "\n"
 "Детали: {}"
 
-#: CompressMedia/src/compress_media.py:244
+#: CompressMedia/src/compress_media.py:245
 #: skl_shared/src/message/controller.py:43
 msgid "Empty output is not allowed!"
 msgstr "Пустые выходные данные не допускаются!"
 
-#: CompressMedia/src/compress_media.py:290 CompressMedia/src/utils.py:142
+#: CompressMedia/src/compress_media.py:291 CompressMedia/src/utils.py:142
 msgid "Goodbye!"
 msgstr "До свидания!"
 
