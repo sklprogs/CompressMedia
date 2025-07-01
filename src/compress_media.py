@@ -29,7 +29,7 @@ class File:
     
     def __init__(self):
         self.source = ''
-        self.relpath = ''
+        self.basename = ''
         self.filename = ''
         self.target = ''
         self.targetdir = ''
@@ -114,7 +114,7 @@ class Converter:
             if ifile.Skipped or ifile.Failed:
                 continue
             PROGRESS.update()
-            mes = _('Process "{}" ({}/{})').format(ifile.relpath, PROGRESS.get_value() + 1, PROGRESS.get_max())
+            mes = _('Process "{}" ({}/{})').format(ifile.filename, PROGRESS.get_value() + 1, PROGRESS.get_max())
             PROGRESS.set_info(mes)
             if ifile.Image:
                 if not self._convert_photo(ifile.source, ifile.target):
@@ -176,11 +176,11 @@ class Converter:
         for ifile in self.ifiles:
             ifile.targetdir = os.path.join(self.pathw, ifile.date)
             if ifile.Image:
-                ifile.target = os.path.join(ifile.targetdir, ifile.relpath)
+                ifile.target = os.path.join(ifile.targetdir, ifile.filename)
             elif ifile.Video:
                 # We explicitly convert all videos to MP4
                 ifile.target = os.path.join(ifile.targetdir
-                                           ,ifile.filename + '.mp4')
+                                           ,ifile.basename + '.mp4')
     
     def create_folders(self):
         f = '[CompressMedia] compress_media.Converter.create_folders'
@@ -207,18 +207,18 @@ class Converter:
         if self.Success:
             self.idirw = Directory(self.pathw)
     
-    def _get_date_android6(self,relpath):
-        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
+    def _get_date_android6(self, basename):
+        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
         if match:
             return f'{match.group(2)}-{match.group(3)}-{match.group(4)}'
     
-    def _get_date_android10(self, relpath):
-        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*', relpath)
+    def _get_date_android10(self, basename):
+        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
         if match:
             return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
-    def _get_date_winphone(self, relpath):
-        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*', relpath)
+    def _get_date_winphone(self, basename):
+        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*', basename)
         if match:
             return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
@@ -228,11 +228,11 @@ class Converter:
             rep.cancel(f)
             return
         for ifile in self.ifiles:
-            date = self._get_date_android6(ifile.relpath)
+            date = self._get_date_android6(ifile.basename)
             if not date:
-                date = self._get_date_android10(ifile.relpath)
+                date = self._get_date_android10(ifile.basename)
             if not date:
-                date = self._get_date_winphone(ifile.relpath)
+                date = self._get_date_winphone(ifile.basename)
             if date:
                 ifile.date = date
             else:
@@ -259,7 +259,7 @@ class Converter:
             ifile = File()
             ifile.source = files[i]
             ipath = Path(files[i])
-            ifile.relpath = ipath.get_basename()
+            ifile.basename = ipath.get_basename()
             ifile.filename = ipath.get_filename()
             ext_low = ipath.get_ext_low()
             if ext_low in IMAGE_TYPES:
