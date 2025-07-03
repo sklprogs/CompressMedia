@@ -208,17 +208,17 @@ class Converter:
             self.idirw = Directory(self.pathw)
     
     def _get_date_android6(self, basename):
-        match = re.match('(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
+        match = re.match(r'(IMG|VID)_(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
         if match:
             return f'{match.group(2)}-{match.group(3)}-{match.group(4)}'
     
     def _get_date_android10(self, basename):
-        match = re.match('(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
+        match = re.match(r'(\d\d\d\d)(\d\d)(\d\d)_.*', basename)
         if match:
             return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
     def _get_date_winphone(self, basename):
-        match = re.match('WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*', basename)
+        match = re.match(r'WP_(\d\d\d\d)(\d\d)(\d\d)_\d\d_\d\d_\d\d_*', basename)
         if match:
             return f'{match.group(1)}-{match.group(2)}-{match.group(3)}'
     
