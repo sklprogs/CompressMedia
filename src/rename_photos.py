@@ -30,8 +30,8 @@ class HandleDir:
     
     def __init__(self, obj):
         self.desc = ''
-        self.images = []
-        self.formats = ['.jpg', '.jpeg', '.bmp', '.png', '.tiff']
+        self.files = []
+        self.formats = ('.jpg', '.jpeg', '.mp4', '.3gp', '.avi')
         self.Success = True
         self.obj = obj
         self.check()
@@ -44,11 +44,11 @@ class HandleDir:
         if not self.Success:
             rep.cancel(f)
             return
-        if not self.images:
+        if not self.files:
             rep.empty(f)
             return
-        mes = list(self.images)
-        mes.insert(0, _('PHOTOS:'))
+        mes = list(self.files)
+        mes.insert(0, _('MEDIA FILES:'))
         shDEBUG.reset(f, '\n'.join(mes))
         shDEBUG.show()
     
@@ -79,22 +79,22 @@ class HandleDir:
         if not self.Success:
             rep.cancel(f)
             return
-        if not self.images:
+        if not self.files:
             self.Success = False
             rep.empty(f)
             return
-        Launch(self.images[0]).launch_default()
+        Launch(self.files[0]).launch_default()
     
     def run(self):
         self.check()
-        self.set_images()
+        self.set_files()
         self.debug()
         self.show_images()
         self.input_desc()
         self.rename()
     
-    def set_images(self):
-        f = '[CompressMedia] rename_photos.HandleDir.set_images'
+    def set_files(self):
+        f = '[CompressMedia] rename_photos.HandleDir.set_files'
         if not self.Success:
             rep.cancel(f)
             return
@@ -106,7 +106,7 @@ class HandleDir:
             return
         for file in subfiles:
             if Path(file).get_ext_low() in self.formats:
-                self.images.append(file)
+                self.files.append(file)
     
     def check(self):
         f = '[CompressMedia] rename_photos.HandleDir.check'
