@@ -12,7 +12,7 @@ from skl_shared.paths import Path, Directory as shDirectory, Home
 from skl_shared.graphics.root.controller import ROOT
 from skl_shared.graphics.debug.controller import DEBUG as shDEBUG
 
-DEBUG = True
+DEBUG = False
 
 
 class Directory:
